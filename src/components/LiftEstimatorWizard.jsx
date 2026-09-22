@@ -170,6 +170,43 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
     return AESTHETIC_FINISHES.find((a) => a.id === selectedAesthetic) || AESTHETIC_FINISHES[0];
   }, [selectedAesthetic]);
 
+  // Live-encoded WhatsApp estimate for the current configuration
+  const encodedEstimation = useMemo(() => {
+    const inquiryRef = `KE-EST-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const timestamp = new Date().toISOString();
+
+    const rawData = {
+      inquiryId: inquiryRef,
+      timestamp,
+      application: currentBuilding.name,
+      buildingCategory: currentBuilding.id,
+      floors: selectedFloors,
+      capacity: `${currentCapacity.persons} Persons (${currentCapacity.weight})`,
+      hoistwayClear: currentCapacity.shaftSize,
+      internalCar: currentCapacity.carSize,
+      pitDepth: currentCapacity.pit,
+      overheadClearance: currentCapacity.overhead,
+      motor: currentBuilding.motor,
+      power: currentBuilding.power,
+      aesthetic: currentAesthetic.name,
+      standard: "BIS IS 14665 Standard"
+    };
+
+    const jsonStr = JSON.stringify(rawData);
+    const encodedPayload = btoa(unescape(encodeURIComponent(jsonStr)));
+
+    let hash = 0;
+    for (let i = 0; i < jsonStr.length; i++) {
+      hash = ((hash << 5) - hash + jsonStr.charCodeAt(i)) | 0;
+    }
+    const checksum = `SHA-${Math.abs(hash).toString(16).toUpperCase().padStart(8, "0")}`;
+
+    const message = `Hello Krupa Elevators, I would like an estimate for a ${currentBuilding.name} (${selectedFloors}, ${currentCapacity.persons} persons, ${currentAesthetic.name}). Ref: ${inquiryRef}`;
+    const whatsappUrl = `https://wa.me/${companyData.contacts.whatsapp}?text=${encodeURIComponent(message)}`;
+
+    return { inquiryId: inquiryRef, timestamp, checksum, encodedPayload, whatsappUrl, rawData };
+  }, [currentBuilding, currentCapacity, currentAesthetic, selectedFloors]);
+
   // Securely encode and submit estimation via direct HTTPS POST
   const handleSecureSubmit = async (e) => {
     e?.preventDefault();
