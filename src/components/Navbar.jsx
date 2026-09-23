@@ -58,6 +58,39 @@ export default function Navbar() {
     return (group.children || []).some((c) => isActive(c.path));
   };
 
+  const scrollToHero = () => {
+    const hero = document.getElementById("hero");
+    if (hero) {
+      hero.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      if (window.location.hash) {
+        const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+        window.history.replaceState(null, "", base ? base + "/" : "/");
+      }
+      scrollToHero();
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const handleNavClick = (e, path) => {
+    if (path === "/" && location.pathname === "/") {
+      e.preventDefault();
+      if (window.location.hash) {
+        const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+        window.history.replaceState(null, "", base ? base + "/" : "/");
+      }
+      scrollToHero();
+    }
+    setMobileMenuOpen(false);
+  };
+
   // Close when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -126,7 +159,8 @@ export default function Navbar() {
             {/* Logo Only (no text, no slogan) */}
             <Link
               to="/"
-              className="flex items-center shrink-0 group focus:outline-none"
+              onClick={handleLogoClick}
+              className="flex items-center shrink-0 group focus:outline-none cursor-pointer"
               aria-label="Krupa Elevators Home"
             >
               <img
@@ -147,6 +181,7 @@ export default function Navbar() {
                     <Link
                       key={group.name}
                       to={group.path}
+                      onClick={(e) => handleNavClick(e, group.path)}
                       className={`px-3 py-1.5 rounded-lg text-xs xl:text-[13px] font-semibold transition-all ${active
                         ? "text-brand-teal bg-brand-teal-light font-bold"
                         : "text-slate-600 hover:text-brand-teal hover:bg-slate-100/70"
@@ -165,8 +200,9 @@ export default function Navbar() {
                     onMouseEnter={() => setDesktopOpenGroup(group.name)}
                     onMouseLeave={() => setDesktopOpenGroup((prev) => (prev === group.name ? null : prev))}
                   >
-                    <button
-                      onClick={() => setDesktopOpenGroup((prev) => (prev === group.name ? null : group.name))}
+                    <Link
+                      to={group.path}
+                      onClick={() => setDesktopOpenGroup(null)}
                       className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs xl:text-[13px] font-semibold transition-all cursor-pointer ${active
                         ? "text-brand-teal bg-brand-teal-light font-bold"
                         : "text-slate-600 hover:text-brand-teal hover:bg-slate-100/70"
@@ -176,7 +212,7 @@ export default function Navbar() {
                     >
                       <span>{group.name}</span>
                       <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
-                    </button>
+                    </Link>
 
                     {open && (
                       <div className="absolute top-full left-0 pt-2 w-72 z-50">
@@ -256,7 +292,7 @@ export default function Navbar() {
                   <Link
                     key={group.name}
                     to={group.path}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(e, group.path)}
                     className={`flex justify-between items-center px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${active
                       ? "text-brand-teal bg-brand-teal-light"
                       : "text-slate-700 hover:bg-slate-50"
@@ -271,17 +307,29 @@ export default function Navbar() {
               const expanded = mobileOpenGroup === group.name;
               return (
                 <div key={group.name} className="rounded-xl overflow-hidden">
-                  <button
-                    onClick={() => setMobileOpenGroup((prev) => (prev === group.name ? null : group.name))}
-                    className={`w-full flex justify-between items-center px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${active
+                  <div
+                    className={`flex items-center justify-between px-3.5 py-1 rounded-xl transition-all ${active
                       ? "text-brand-teal bg-brand-teal-light"
                       : "text-slate-700 hover:bg-slate-50"
                       }`}
-                    aria-expanded={expanded}
                   >
-                    <span>{group.name}</span>
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform ${expanded ? "rotate-180" : ""}`} />
-                  </button>
+                    <Link
+                      to={group.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex-1 py-2 text-xs font-bold"
+                    >
+                      <span>{group.name}</span>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setMobileOpenGroup((prev) => (prev === group.name ? null : group.name))}
+                      className="p-1.5 -mr-1 text-slate-400 hover:text-brand-teal transition-colors rounded-lg cursor-pointer"
+                      aria-expanded={expanded}
+                      aria-label={`Toggle ${group.name} sub-menu`}
+                    >
+                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${expanded ? "rotate-180 text-brand-teal" : ""}`} />
+                    </button>
+                  </div>
                   {expanded && (
                     <div className="pl-3 pr-1 py-1 space-y-1">
                       {group.children.map((child) => (

@@ -24,6 +24,7 @@ export default function Contact({ onOpenBrochure }) {
   const location = useLocation();
   const [decodedInquiry, setDecodedInquiry] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submissionData, setSubmissionData] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -63,7 +64,102 @@ export default function Contact({ onOpenBrochure }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const inquiryRef =
+      decodedInquiry?.inquiryId ||
+      `KE-INQ-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    const messageLines = [
+      `*KRUPA ELEVATORS — NEW TECHNICAL INQUIRY*`,
+      `*Reference ID:* ${inquiryRef}`,
+      `*Date:* ${new Date().toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })}`,
+      ``,
+      `👤 *CLIENT DETAILS*`,
+      `• *Name:* ${formData.name}`,
+      `• *Phone:* ${formData.phone}`,
+      formData.email ? `• *Email:* ${formData.email}` : null,
+      formData.city ? `• *City / Location:* ${formData.city}` : null,
+      ``,
+      `🏢 *PROJECT SPECIFICATIONS*`,
+      `• *Building Category:* ${formData.buildingType}`,
+      `• *Floors / Stops:* ${formData.floors}`,
+      `• *Passenger Capacity:* ${formData.capacity}`,
+      `• *Door System:* ${formData.doorType}`,
+    ];
+
+    if (formData.message && formData.message.trim()) {
+      messageLines.push(
+        ``,
+        `📝 *PROJECT REMARKS / ARCHITECTURAL CONSTRAINTS*`,
+        formData.message.trim()
+      );
+    }
+
+    if (decodedInquiry) {
+      messageLines.push(
+        ``,
+        `📐 *ATTACHED SPECIFICATION DETAILS (${decodedInquiry.inquiryId})*`,
+        `• *Shaft Clear (W x D):* ${decodedInquiry.hoistwayClear || "Standard"}`,
+        `• *Internal Car (W x D):* ${decodedInquiry.internalCar || "Standard"}`,
+        `• *Pit Depth:* ${decodedInquiry.pitDepth || "Standard"}`,
+        `• *Overhead Clearance:* ${decodedInquiry.overheadClearance || "Standard"}`,
+        decodedInquiry.aesthetic ? `• *Aesthetic Finish:* ${decodedInquiry.aesthetic}` : null,
+        decodedInquiry.motor ? `• *Drive Motor:* ${decodedInquiry.motor}` : null,
+        decodedInquiry.power ? `• *Power Supply:* ${decodedInquiry.power}` : null
+      );
+    }
+
+    messageLines.push(
+      ``,
+      `----------------------------------------`,
+      `_Sent via Krupa Elevators Web Inquiry Portal_`
+    );
+
+    const messageText = messageLines.filter(Boolean).join("\n");
+    const targetUrl = `https://wa.me/${companyData.contacts.whatsapp}?text=${encodeURIComponent(messageText)}`;
+
+    setSubmissionData({
+      ref: inquiryRef,
+      messageText,
+      targetUrl,
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      city: formData.city,
+      buildingType: formData.buildingType,
+      floors: formData.floors,
+      capacity: formData.capacity,
+      doorType: formData.doorType,
+      message: formData.message,
+    });
+
     setFormSubmitted(true);
+
+    // Asynchronous background email backup via FormSubmit without blocking UI
+    try {
+      fetch(`https://formsubmit.co/ajax/${companyData.contacts.emailSales}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `[NEW TECHNICAL INQUIRY] Ref: ${inquiryRef} - ${formData.name}`,
+          inquiryReference: inquiryRef,
+          ...formData,
+          decodedInquiry: decodedInquiry || null,
+        }),
+      }).catch(() => {});
+    } catch (_) {}
+
+    // Open WhatsApp
+    window.open(targetUrl, "_blank", "noopener,noreferrer");
   };
 
   const faqs = [
@@ -293,19 +389,107 @@ export default function Contact({ onOpenBrochure }) {
               </div>
             )}
 
-            {formSubmitted ? (
-              <div className="p-8 rounded-2xl bg-teal-50 border border-teal-200 text-teal-950 text-center space-y-3">
-                <CheckCircle2 className="w-14 h-14 text-brand-teal mx-auto" />
-                <h3 className="text-xl font-bold">Inquiry Successfully Submitted!</h3>
-                <p className="text-xs text-teal-800 max-w-md mx-auto leading-relaxed">
-                  Thank you, <strong>{formData.name}</strong>. Our senior technical consultant will review your specifications for <strong>{formData.buildingType}</strong> ({formData.city}) and contact you at <strong>{formData.phone}</strong> shortly.
-                </p>
-                <button
-                  onClick={() => setFormSubmitted(false)}
-                  className="mt-4 px-6 py-2.5 bg-brand-teal text-white text-xs font-bold rounded-xl shadow hover:bg-teal-600 transition-colors"
-                >
-                  Send Another Request
-                </button>
+            {formSubmitted && submissionData ? (
+              <div className="p-6 sm:p-8 rounded-3xl bg-emerald-50/90 border border-emerald-200 text-emerald-950 text-center space-y-5 animate-in fade-in duration-300">
+                <div className="w-16 h-16 rounded-2xl bg-[#25D366] text-white flex items-center justify-center mx-auto shadow-lg shadow-emerald-600/30">
+                  <WhatsAppIcon className="w-9 h-9 text-white" />
+                </div>
+
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100/90 px-3 py-1 rounded-full inline-block mb-2">
+                    Inquiry Ref: {submissionData.ref}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
+                    Inquiry Ready to Send to WhatsApp!
+                  </h3>
+                  <p className="text-xs text-slate-600 max-w-lg mx-auto leading-relaxed mt-2">
+                    Thank you, <strong className="text-slate-900">{submissionData.name}</strong>. WhatsApp has been opened with your complete project details for <strong className="text-slate-900">{submissionData.buildingType}</strong>.
+                  </p>
+                </div>
+
+                {/* Direct WhatsApp CTA Button */}
+                <div className="max-w-md mx-auto space-y-2.5 pt-1">
+                  <a
+                    href={submissionData.targetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center space-x-2 py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                  >
+                    <WhatsAppIcon className="w-5 h-5 text-white" />
+                    <span>Open Chat in WhatsApp ({companyData.contacts.altPhone})</span>
+                  </a>
+                  <p className="text-[11px] text-slate-500">
+                    If WhatsApp did not launch automatically, tap the green button above to deliver your message.
+                  </p>
+                </div>
+
+                {/* Summary of what was sent */}
+                <div className="bg-white p-5 rounded-2xl border border-emerald-200/80 text-left text-xs text-slate-700 max-w-md mx-auto space-y-2 shadow-xs">
+                  <div className="font-bold text-slate-900 border-b border-slate-100 pb-2 mb-2 flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-800">
+                      <CheckCircle2 className="w-4 h-4 text-[#25D366]" /> Form Details Transmitted
+                    </span>
+                    <span className="text-[10px] text-slate-400 font-mono">{submissionData.ref}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <span className="text-slate-500 block text-[10.5px]">Client:</span>
+                      <strong>{submissionData.name}</strong>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10.5px]">Phone:</span>
+                      <strong>{submissionData.phone}</strong>
+                    </div>
+                    {submissionData.email && (
+                      <div>
+                        <span className="text-slate-500 block text-[10.5px]">Email:</span>
+                        <span className="truncate block">{submissionData.email}</span>
+                      </div>
+                    )}
+                    {submissionData.city && (
+                      <div>
+                        <span className="text-slate-500 block text-[10.5px]">City:</span>
+                        <span>{submissionData.city}</span>
+                      </div>
+                    )}
+                    <div>
+                      <span className="text-slate-500 block text-[10.5px]">Building:</span>
+                      <span>{submissionData.buildingType}</span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10.5px]">Floors:</span>
+                      <span>{submissionData.floors}</span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10.5px]">Capacity:</span>
+                      <span>{submissionData.capacity}</span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 block text-[10.5px]">Door:</span>
+                      <span>{submissionData.doorType}</span>
+                    </div>
+                  </div>
+                  {submissionData.message && (
+                    <div className="pt-2 border-t border-slate-100 text-[11px] text-slate-600">
+                      <span className="text-slate-500 block text-[10.5px]">Remarks:</span>
+                      <p className="italic bg-slate-50 p-2 rounded-lg mt-0.5 border border-slate-100">
+                        "{submissionData.message}"
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setSubmissionData(null);
+                    }}
+                    className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl shadow-xs transition-colors cursor-pointer"
+                  >
+                    Send Another Request
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -453,11 +637,16 @@ export default function Contact({ onOpenBrochure }) {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs font-bold shadow-md transition-all flex items-center justify-center space-x-2"
+                  className="w-full py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-bold shadow-lg shadow-emerald-900/20 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center space-x-2 cursor-pointer"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit Technical Inquiry</span>
+                  <WhatsAppIcon className="w-5 h-5 text-white" />
+                  <Send className="w-4 h-4 text-emerald-100" />
+                  <span>Send Technical Inquiry via WhatsApp</span>
                 </button>
+                <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 text-center pt-0.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                  <span>All form specifications are packaged and sent directly to WhatsApp (+91 63533 44875).</span>
+                </div>
               </form>
             )}
           </div>

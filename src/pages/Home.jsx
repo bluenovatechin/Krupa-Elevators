@@ -92,7 +92,10 @@ export default function Home({ onOpenBrochure }) {
       {/* ========================================================================= */}
       {/* 1. HERO SECTION                                                           */}
       {/* ========================================================================= */}
-      <section className="relative w-full h-[calc(100vh-64px)] min-h-[580px] max-h-[820px] bg-slate-950 overflow-hidden flex items-center">
+      <section
+        id="hero"
+        className="relative w-full h-[calc(100vh-64px)] min-h-[580px] max-h-[820px] bg-slate-950 overflow-hidden flex items-center"
+      >
 
         {/* ── Full-layer crossfade slides ────────────────────────────────────────
             Every slide is one absolute layer = image + gradient + text content.

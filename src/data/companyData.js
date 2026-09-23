@@ -9,8 +9,8 @@ export const companyData = {
   contacts: {
     phone: "+91 82008 59171",
     phoneRaw: "+918200859171",
-    // whatsapp: "918200859171",
-    whatsapp: "916353344875",
+    whatsapp: "918200859171",
+    // whatsapp: "916353344875",
     emailPrimary: "info@krupaelevators.com",
     emailSales: "sales@krupaelevators.com",
     website: "www.krupaelevators.com",
