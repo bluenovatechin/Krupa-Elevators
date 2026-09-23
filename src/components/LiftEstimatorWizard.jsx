@@ -613,7 +613,7 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
                 {/* Zero Exposure Guarantee */}
                 <div className="flex items-center justify-center gap-1.5 text-[10.5px] text-slate-400 text-center pt-0.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                  <span>Data is encoded into a secure token before sending to +91 63533 44875 so no one can see it.</span>
+                  <span>Data is encoded into a secure token before sending to {companyData.contacts.phone} so no one can see it.</span>
                 </div>
 
                 {/* Link to Architects Corner */}

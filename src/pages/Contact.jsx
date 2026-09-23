@@ -155,8 +155,8 @@ export default function Contact({ onOpenBrochure }) {
           ...formData,
           decodedInquiry: decodedInquiry || null,
         }),
-      }).catch(() => {});
-    } catch (_) {}
+      }).catch(() => { });
+    } catch (_) { }
 
     // Open WhatsApp
     window.open(targetUrl, "_blank", "noopener,noreferrer");
@@ -416,7 +416,7 @@ export default function Contact({ onOpenBrochure }) {
                     className="w-full flex items-center justify-center space-x-2 py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
                   >
                     <WhatsAppIcon className="w-5 h-5 text-white" />
-                    <span>Open Chat in WhatsApp ({companyData.contacts.altPhone})</span>
+                    <span>Open Chat in WhatsApp ({companyData.contacts.whatsapp})</span>
                   </a>
                   <p className="text-[11px] text-slate-500">
                     If WhatsApp did not launch automatically, tap the green button above to deliver your message.
@@ -645,7 +645,7 @@ export default function Contact({ onOpenBrochure }) {
                 </button>
                 <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 text-center pt-0.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                  <span>All form specifications are packaged and sent directly to WhatsApp (+91 63533 44875).</span>
+                  <span>All form specifications are packaged and sent directly to WhatsApp ({companyData.contacts.phone}).</span>
                 </div>
               </form>
             )}
