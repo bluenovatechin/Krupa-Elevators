@@ -2,6 +2,7 @@
   "name": "krupa-elevators",
   "private": true,
   "version": "1.0.0",
+  "homepage": "https://bluenovatechin.github.io/Krupa-Elevators",
   "type": "module",
   "scripts": {
     "dev": "vite",
