@@ -189,7 +189,6 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
       motor: currentBuilding.motor,
       power: currentBuilding.power,
       aesthetic: currentAesthetic.name,
-      standard: "BIS IS 14665 Standard"
     };
 
     const jsonStr = JSON.stringify(rawData);
@@ -229,7 +228,6 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
       motor: currentBuilding.motor,
       power: currentBuilding.power,
       aesthetic: currentAesthetic.name,
-      standard: "BIS IS 14665 Standard"
     };
 
     // Encode specifications into UTF-8 safe Base64 token so raw parameters are not exposed

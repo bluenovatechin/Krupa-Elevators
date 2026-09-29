@@ -18,6 +18,8 @@ import { assetUrl } from "../utils/assetPath";
 import Seo from "../components/common/Seo";
 import CTASection from "../components/common/CTASection";
 import LiftEstimatorWizard from "../components/LiftEstimatorWizard";
+import OwnershipPolicySection from "../components/common/OwnershipPolicySection";
+import InstallationsTeaser from "../components/common/InstallationsTeaser";
 
 // Hero visual scenes
 const heroScenes = [
@@ -86,7 +88,7 @@ export default function Home({ onOpenBrochure }) {
     <div className="space-y-16 sm:space-y-24 pb-20 overflow-x-hidden">
       <Seo
         title="Krupa Elevators — Reliable Riding Experience"
-        description="KRUPA ELEVATORS designs and manufactures passenger, capsule, hospital, goods, car, MRL, home and hydraulic elevators in Ahmedabad, Gujarat — engineered to the BIS IS 14665 standard."
+        description="KRUPA ELEVATORS designs and manufactures passenger, capsule, hospital, goods, car, MRL, home and hydraulic elevators in Ahmedabad, Gujarat."
       />
 
       {/* ========================================================================= */}
@@ -126,7 +128,7 @@ export default function Home({ onOpenBrochure }) {
 
               {/* Foreground text content — sits on top of the gradient */}
               <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8">
-                <div className="max-w-2xl space-y-5">
+                <div className="max-w-[50rem] space-y-5">
 
                   {/* Category tag */}
                   <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 border border-brand-teal/40 text-brand-teal text-xs font-bold uppercase tracking-wider backdrop-blur-md">
@@ -138,9 +140,6 @@ export default function Home({ onOpenBrochure }) {
                   <div className="space-y-3">
                     <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
                       {scene.title}
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-brand-teal via-teal-200 to-white mt-1">
-                        by KRUPA Elevators
-                      </span>
                     </h1>
                     <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
                       {scene.subtitle}
@@ -150,7 +149,7 @@ export default function Home({ onOpenBrochure }) {
                   {/* Company info badges */}
                   <div className="flex flex-wrap gap-2">
                     {[
-                      { icon: ShieldCheck, text: "IS 14665 & BIS Certified",           color: "text-brand-teal"   },
+                      { icon: ShieldCheck, text: "100% Monopoly-Free — No Lock-In",    color: "text-brand-orange" },
                       { icon: Zap,         text: "Up to 30% Energy Savings",            color: "text-brand-teal"   },
                       { icon: MapPin,      text: "Ahmedabad, Gujarat — Direct Factory", color: "text-brand-orange" },
                     ].map(({ icon: Icon, text, color }) => (
@@ -233,7 +232,7 @@ export default function Home({ onOpenBrochure }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. ABOUT TEASER — condensed; full depth lives on /about                  */}
+      {/* 2. ABOUT TEASER — condensed; full depth lives on /about                   */}
       {/* ========================================================================= */}
       <section id="about-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
@@ -244,14 +243,9 @@ export default function Home({ onOpenBrochure }) {
             </span>
           </div>
           <div className="flex items-center space-x-4 text-xs font-medium text-slate-500">
-            <span className="flex items-center space-x-1.5">
-              <ShieldCheck className="w-4 h-4 text-brand-teal" />
-              <span>IS 14665 & BIS Certified</span>
-            </span>
-            <span className="hidden sm:inline text-slate-300">|</span>
             <span className="hidden sm:flex items-center space-x-1.5 text-slate-600">
               <MapPin className="w-3.5 h-3.5 text-brand-orange" />
-              <span>Nikol Studio & Kathwada Works, Ahmedabad</span>
+              <span>Kathwada Works, Ahmedabad</span>
             </span>
           </div>
         </div>
@@ -310,14 +304,7 @@ export default function Home({ onOpenBrochure }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2.5 INTERACTIVE 60-SECOND LIFT ESTIMATOR WIZARD                          */}
-      {/* ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <LiftEstimatorWizard onOpenBrochure={onOpenBrochure} />
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 3. OUR ELEVATOR SECTION (Client-Friendly & Minimal)                         */}
+      {/* 3. OUR ELEVATOR SECTION (Client-Friendly & Minimal)                       */}
       {/* ========================================================================= */}
       <section id="our-elevators-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-5">
@@ -536,7 +523,7 @@ export default function Home({ onOpenBrochure }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. TECHNOLOGY & MECHANISMS SECTION (Client-Friendly & Minimal)             */}
+      {/* 5. TECHNOLOGY & MECHANISMS SECTION (Client-Friendly & Minimal)            */}
       {/* ========================================================================= */}
       <section id="mechanisms-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-5">
@@ -638,17 +625,38 @@ export default function Home({ onOpenBrochure }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. GET A QUOTE — short prompt, full inquiry form lives on /contact         */}
+      {/* 6. INSTALLATIONS — proof; full directory lives on /about/projects         */}
+      {/* ========================================================================= */}
+      <section id="installations-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <InstallationsTeaser />
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 7. MONOPOLY-FREE OWNERSHIP PROMISE — after-sales assurance                */}
+      {/* ========================================================================= */}
+      <section id="ownership-promise" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+        <OwnershipPolicySection />
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 8. INTERACTIVE 60-SECOND LIFT ESTIMATOR WIZARD                            */}
+      {/* ========================================================================= */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <LiftEstimatorWizard onOpenBrochure={onOpenBrochure} />
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 9. GET A QUOTE — short prompt, full inquiry form lives on /contact        */}
       {/* ========================================================================= */}
       <section id="cta-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
         <CTASection
           title="Discuss Your Elevator Requirement"
-          subtitle="Share your building parameters with our Nikol engineering team for a complimentary AutoCAD General Arrangement (GA) hoistway layout, structural load calculation, and turnkey quotation."
+          subtitle="Share your building parameters with our engineering team for a complimentary AutoCAD General Arrangement (GA) hoistway layout, structural load calculation, and turnkey quotation."
         />
       </section>
 
       {/* ========================================================================= */}
-      {/* 7. FOOTER SECTION (Rendered in App.jsx layout)                           */}
+      {/* 10. FOOTER SECTION (Rendered in App.jsx layout)                          */}
       {/* ========================================================================= */}
     </div>
   );

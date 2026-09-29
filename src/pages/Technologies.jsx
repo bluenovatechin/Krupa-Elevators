@@ -126,9 +126,6 @@ export default function Technologies() {
                     Traction Machine Architecture: Gearless PMSM vs. Geared
                   </h2>
                 </div>
-                {/* <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
-                  IS 14665 Standard
-                </span> */}
               </div>
 
               {/* Side-by-Side Comparison Cards */}
@@ -526,7 +523,6 @@ export default function Technologies() {
                     {machineComparison.title}
                   </h2>
                 </div>
-                <span className="text-xs text-slate-400">IS 14665 Standard</span>
               </div>
 
               <div className="overflow-x-auto rounded-2xl border border-slate-800 text-xs">

@@ -167,13 +167,6 @@ export default function Footer({ onOpenBrochure }) {
             </h4>
             <div className="space-y-3 text-xs leading-relaxed">
               <div className="flex items-start space-x-2">
-                <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-white block font-semibold">Registered Office:</strong>
-                  {companyData.contacts.office.address}
-                </span>
-              </div>
-              <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-brand-teal shrink-0 mt-0.5" />
                 <span>
                   <strong className="text-white block font-semibold">Works & Factory:</strong>

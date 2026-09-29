@@ -6,9 +6,11 @@ import {
   Layers,
   CheckCircle2,
   Users,
-  Radio
+  Radio,
+  LockOpen
 } from "lucide-react";
 import { servicesMaster } from "../data/servicesMaster";
+import { ownershipPolicy } from "../data/companyData";
 import ScrollReveal from "../components/ScrollReveal";
 import PageHero from "../components/common/PageHero";
 import CTASection from "../components/common/CTASection";
@@ -39,6 +41,37 @@ export default function ServiceAmcMaintenance() {
         />
 
         <div className="max-w-7xl mx-auto pt-4 px-4 sm:px-6 lg:px-8 space-y-16">
+          {/* Monopoly-Free Ownership Policy */}
+          <ScrollReveal direction="up" distance={18}>
+            <div
+              id="ownership-policy"
+              className="scroll-mt-24 rounded-3xl border-2 border-brand-orange/30 bg-white shadow-sm overflow-hidden"
+            >
+              <div className="bg-gradient-to-r from-brand-orange-light to-white px-6 sm:px-10 py-6 border-b border-orange-100 space-y-2">
+                <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-orange">
+                  <LockOpen className="w-4 h-4" />
+                  Our Ownership Policy
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+                  {ownershipPolicy.badge}
+                </h2>
+                <p className="text-sm text-slate-600 leading-relaxed max-w-3xl">
+                  {ownershipPolicy.summary}
+                </p>
+              </div>
+              <ol className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 px-6 sm:px-10 py-8">
+                {ownershipPolicy.commitments.map((item, idx) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+                    <span className="shrink-0 w-7 h-7 rounded-full bg-brand-teal text-white text-xs font-bold flex items-center justify-center">
+                      {idx + 1}
+                    </span>
+                    <span className="pt-0.5">{item}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </ScrollReveal>
+
           {/* 5 Service Pillars */}
           <div className="space-y-8">
             <div>

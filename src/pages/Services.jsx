@@ -11,9 +11,11 @@ import {
   Clock,
   Sparkles,
   ClipboardList,
-  ArrowRight
+  ArrowRight,
+  LockOpen
 } from "lucide-react";
 import { servicesMaster } from "../data/servicesMaster";
+import { ownershipPolicy } from "../data/companyData";
 import ScrollReveal from "../components/ScrollReveal";
 import PageHero from "../components/common/PageHero";
 import CTASection from "../components/common/CTASection";
@@ -79,6 +81,24 @@ export default function Services() {
       />
 
       <div className="max-w-7xl mx-auto pt-4 px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* Ownership policy note — full policy lives on the AMC page */}
+        <Link
+          to="/services/amc-maintenance#ownership-policy"
+          className="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-5 py-4 rounded-2xl bg-white border border-slate-200 hover:border-brand-teal transition-colors"
+        >
+          <span className="flex items-start sm:items-center gap-3 text-sm text-slate-700">
+            <LockOpen className="w-5 h-5 text-brand-teal shrink-0" />
+            <span>
+              <strong className="font-bold text-slate-900">{ownershipPolicy.badge}.</strong>{" "}
+              No password locks, no restricted protocols — you are free to choose any service provider.
+            </span>
+          </span>
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand-teal shrink-0 pl-8 sm:pl-0">
+            Read the policy
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </span>
+        </Link>
+
         {/* 5 Service Pillars */}
         <div className="space-y-8">
           <div>

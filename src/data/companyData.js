@@ -14,12 +14,6 @@ export const companyData = {
     emailPrimary: "info@krupaelevators.com",
     emailSales: "sales@krupaelevators.com",
     website: "www.krupaelevators.com",
-    office: {
-      title: "Registered Office",
-      address: "FF-6 Sagun Enclave, Beside Nikol Community Hall, Nr. Manohar Villa Char Rasta, Nikol, Ahmedabad-382345, Gujarat, India",
-      city: "Ahmedabad",
-      pincode: "382345"
-    },
     factory: {
       title: "Manufacturing Works",
       address: "1, Heritage Industrial Hub, Nr. Global Industrial Estate, Nr. Kotak Mahindra Bank, Kathwada GIDC Road No 5, Ahmedabad-382430, Gujarat, India",
@@ -61,6 +55,44 @@ export const companyData = {
     { title: "Strength", desc: "Up to 4000kg freight capacity with reinforced steel construction." },
     { title: "Spacious", desc: "Maximized car dimensions with minimal shaft overhead and pit requirements." },
     { title: "Smooth", desc: "Closed-loop V3F drive for gentle starts and bump-free stops." }
+  ]
+};
+
+// "Monopoly-Free" ownership promise — shown on Home and detailed on the AMC page.
+export const ownershipPolicy = {
+  badge: "100% Monopoly-Free Elevators",
+  questions: [
+    "Are you still not the true owner of your elevator, even after buying it?",
+    "Are you locked in with your elevator company, unable to switch maintenance providers while paying exorbitant AMC fees?"
+  ],
+  headline: "Switch to Krupa Elevators — 100% Monopoly-Free Elevators!",
+  summary:
+    "We deliver non-proprietary elevator systems with no password locks and no restricted protocols. Once installed, the elevator is truly yours — giving you complete freedom to choose any service provider you trust at competitive rates.",
+  promises: [
+    {
+      id: "no-locks",
+      title: "No Password Locks",
+      desc: "No hidden service passwords or locked controllers. Your elevator never stops working because a contract ended."
+    },
+    {
+      id: "open-systems",
+      title: "No Restricted Protocols",
+      desc: "Non-proprietary controllers and standard components that any qualified technician can service and source."
+    },
+    {
+      id: "your-choice",
+      title: "Your Choice of Service Provider",
+      desc: "Choose Krupa or any service provider you trust, at competitive AMC rates. The decision is always yours."
+    }
+  ],
+  // Formal policy points listed on the AMC page.
+  commitments: [
+    "The elevator, its controller and its software belong entirely to you from the day of handover.",
+    "No service passwords, time locks or remote shut-offs are placed on any Krupa elevator.",
+    "Controllers use open, standard protocols. No special Krupa-only tools are needed to service them.",
+    "Wiring diagrams and technical documentation for your installation are handed over to you on request.",
+    "Spare parts are standard components, available from Krupa or from the open market.",
+    "You are free to give your maintenance to any service provider, with or without a Krupa AMC."
   ]
 };
 

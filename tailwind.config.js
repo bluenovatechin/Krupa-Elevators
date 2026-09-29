@@ -20,8 +20,17 @@ export default {
           border: '#e2e8f0',
         }
       },
+      // Font stacks live as CSS variables in src/index.css — change them there.
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['var(--font-body)'],
+        display: ['var(--font-display)'],
+        mono: ['var(--font-mono)'],
+      },
+      fontWeight: {
+        black: '700',
+      },
+      letterSpacing: {
+        tight: 'var(--heading-tracking)',
       },
       boxShadow: {
         'elevate': '0 20px 40px -15px rgba(7, 153, 164, 0.12)',

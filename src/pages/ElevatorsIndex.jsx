@@ -23,7 +23,7 @@ export default function ElevatorsIndex() {
         icon={Building2}
         badge="8 Certified Elevator Classes"
         title="Elevator Models & Applications"
-        description="From residential passenger elevators to heavy-tonnage goods hoists, every Krupa elevator is engineered to BIS IS 14665 standards. Browse each model below for its full specification sheet, structural component breakdown, and hoistway CAD drawings."
+        description="From residential passenger elevators to heavy-tonnage goods hoists, every Krupa elevator is engineered in-house. Browse each model below for its full specification sheet, structural component breakdown, and hoistway CAD drawings."
         whatsappMessage="Hello Krupa Elevators, I would like to consult regarding elevator models and specifications."
       />
 
@@ -104,8 +104,8 @@ export default function ElevatorsIndex() {
 
         <CTASection
           title="Need Custom Hoistway Layouts or Non-Standard Dimensions?"
-          subtitle="Our Nikol engineering headquarters creates bespoke AutoCAD GA drawings for narrow shafts, shallow pits, and high-tonnage cargo hoists."
-          badge="Direct Nikol Engineering & CAD Team"
+          subtitle="Our engineering team creates bespoke AutoCAD GA drawings for narrow shafts, shallow pits, and high-tonnage cargo hoists."
+          badge="Direct Engineering & CAD Team"
           variant="gradient"
         />
       </div>

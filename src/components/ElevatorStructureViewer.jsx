@@ -9,8 +9,7 @@ import {
   DoorClosed,
   ArrowDownCircle,
   ArrowUpCircle,
-  Info,
-  CheckCircle2
+  Info
 } from "lucide-react";
 
 const componentIcons = {
@@ -144,10 +143,6 @@ export default function ElevatorStructureViewer({ structure, elevatorName, drawi
             </p>
 
             <div className="pt-3 border-t border-teal-200/60 flex flex-wrap gap-2 text-xs text-slate-600">
-              <div className="flex items-center space-x-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200">
-                <CheckCircle2 className="w-3.5 h-3.5 text-brand-teal" />
-                <span>IS 14665 Safety Standardized</span>
-              </div>
               <div className="flex items-center space-x-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200">
                 <Shield className="w-3.5 h-3.5 text-brand-orange" />
                 <span>100% Factory Certified & Tested</span>

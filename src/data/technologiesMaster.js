@@ -170,7 +170,7 @@ export const technologiesMaster = {
       tag: "Predictive Intelligence",
       image: assetUrl("/assets/technologies/cop-display.jpg"),
       claim: "Continuous real-time status and proactive alert dispatch",
-      summary: "Achieve round-the-clock visibility over all elevator operations with 24-hour IoT monitoring. Sensors track travel cycles, door opening times, vibration thresholds, and error codes in real time, alerting our Nikol technical engineering hub before minor anomalies become service interruptions.",
+      summary: "Achieve round-the-clock visibility over all elevator operations with 24-hour IoT monitoring. Sensors track travel cycles, door opening times, vibration thresholds, and error codes in real time, alerting our technical engineering team before minor anomalies become service interruptions.",
       benefits: [
         "24/7 continuous operational telemetry and predictive fault warning",
         "Automated service ticket generation directly to regional technician squads",
@@ -182,7 +182,7 @@ export const technologiesMaster = {
 
   machineComparison: {
     title: "Traction Machine Engineering: Gearless PMSM vs. Geared Traction",
-    subtitle: "Direct technical comparison per Krupa Elevators engineering standards (IS 14665 compliance).",
+    subtitle: "Direct technical comparison per Krupa Elevators engineering standards.",
     parameters: [
       {
         feature: "Motor & Drive Architecture",

@@ -185,7 +185,7 @@ export const automaticDoors = [
       standardHeight: "2000 mm or 2100 mm Finished Height",
       material: "Stainless Steel AISI 304 Hairline or Mirror Finish",
       doorOperator: "VVVF closed-loop vector controlled direct drive",
-      fireRating: "Compliant with IS 14665 & BS 476 part 22 fire resistance"
+      fireRating: "Compliant with BS 476 part 22 fire resistance"
     },
     applications: ["Residential Towers", "Commercial Offices", "Hotels", "IT Parks"],
     compatibleElevators: ["passenger", "mrl", "hospital", "car"]
@@ -432,7 +432,7 @@ export const automaticDoorSpecificationsTable = {
 // Combined fallback for backward compatibility
 export const doorSpecificationsTable = {
   title: "Elevator Landing Door Systems — Technical Specifications & Dimensions",
-  subtitle: "Dimensional requirements, operation mechanisms, safety interlocks, and compatible elevator applications per IS 14665 standards.",
+  subtitle: "Dimensional requirements, operation mechanisms, safety interlocks, and compatible elevator applications.",
   columns: [
     { key: "doorCategory", label: "Category" },
     { key: "doorType", label: "Door Type / Model" },

@@ -1,5 +1,5 @@
 import React from "react";
-import { SlidersHorizontal, CheckCircle2, ShieldCheck } from "lucide-react";
+import { SlidersHorizontal, CheckCircle2 } from "lucide-react";
 
 /**
  * StandardSpecTable
@@ -38,10 +38,6 @@ export default function StandardSpecTable({ specs, title = "Standard Technical S
           <h3 className="text-lg font-black tracking-tight">{title}</h3>
           {subtitle && <p className="text-xs text-slate-300 mt-0.5">{subtitle}</p>}
         </div>
-        <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium self-start sm:self-auto">
-          <ShieldCheck className="w-3.5 h-3.5 text-brand-teal" />
-          <span>IS 14665 Standard Compliant</span>
-        </div>
       </div>
 
       <div className="overflow-x-auto">
@@ -79,7 +75,7 @@ export default function StandardSpecTable({ specs, title = "Standard Technical S
       <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-slate-500">
         <div className="flex items-center space-x-1.5">
           <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-          <span>Baseline engineering parameters adhering to IS 14665 elevator manufacturing standards.</span>
+          <span>Baseline engineering parameters for Krupa elevator manufacturing.</span>
         </div>
         <span className="text-[11px] text-slate-400">Custom civil modifications accommodated on site survey.</span>
       </div>

@@ -21,7 +21,7 @@ export const servicesMaster = {
       number: "02",
       title: "Professional Supervisors",
       tagline: "Rigorous Quality & Safety Audits",
-      desc: "Every installation, commissioning, and major maintenance overhaul is directly inspected by certified senior technical supervisors from our Nikol engineering hub, ensuring strict adherence to IS 14665 and BIS safety guidelines.",
+      desc: "Every installation, commissioning, and major maintenance overhaul is directly inspected by certified senior technical supervisors, ensuring strict adherence to safety guidelines.",
       benefits: [
         "Independent quality audits for ride comfort, vibration, and leveling accuracy",
         "Verification of civil shaft alignment, plumb line calibration, and rail brackets",

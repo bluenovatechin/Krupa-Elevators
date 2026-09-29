@@ -6,7 +6,6 @@ import {
   Send,
   CheckCircle2,
   Download,
-  Building,
   Factory,
   MessageSquare,
   ChevronDown,
@@ -185,16 +184,16 @@ export default function Contact({ onOpenBrochure }) {
     <div className="min-h-screen bg-slate-50 pb-12">
       <Seo
         title="Contact Us"
-        description="Contact Krupa Elevators for a free site survey, custom CAD layout, or elevator quotation. Registered office in Nikol and manufacturing works in Kathwada, Ahmedabad."
+        description="Contact Krupa Elevators for a free site survey, custom CAD layout, or elevator quotation. Manufacturing works in Kathwada, Ahmedabad."
       />
 
       {/* Page Hero */}
       <PageHero
         breadcrumbs={[{ label: "Contact" }]}
         icon={Phone}
-        badge="Direct Factory & Nikol Engineering Hub"
+        badge="Direct Factory, Ahmedabad"
         title="Let's Plan Your Elevator Solution"
-        description="Reach our corporate headquarters and manufacturing facility in Ahmedabad, Gujarat. Speak with our application engineers for custom architectural CAD assistance, site surveys, or immediate quotation requests."
+        description="Reach our manufacturing facility in Ahmedabad, Gujarat. Speak with our application engineers for custom architectural CAD assistance, site surveys, or immediate quotation requests."
       />
 
 
@@ -212,29 +211,7 @@ export default function Contact({ onOpenBrochure }) {
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Registered Office — compact; full facility detail lives on /about */}
-          <ScrollReveal direction="up" distance={18} delay={0} className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 hover:shadow-lg transition-all flex flex-col justify-between">
-            <div className="space-y-2">
-              <div className="w-10 h-10 rounded-2xl bg-brand-orange-light text-brand-orange flex items-center justify-center">
-                <Building className="w-5 h-5" />
-              </div>
-              <strong className="text-sm font-black text-slate-900 block">{companyData.contacts.office.title}</strong>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {companyData.contacts.office.address}
-              </p>
-              <a
-                href={`tel:${companyData.contacts.phoneRaw}`}
-                className="block text-xs font-bold text-slate-800 hover:text-brand-orange"
-              >
-                {companyData.contacts.phone}
-              </a>
-            </div>
-            <div className="pt-2 border-t border-slate-100 text-[11px] text-slate-400">
-              Open Mon - Sat: 9:00 AM to 7:00 PM
-            </div>
-          </ScrollReveal>
-
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Manufacturing Works — compact; full facility detail lives on /about */}
           <ScrollReveal direction="up" distance={18} delay={60} className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 hover:shadow-lg transition-all flex flex-col justify-between">
             <div className="space-y-2">

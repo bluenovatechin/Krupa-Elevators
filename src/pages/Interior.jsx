@@ -376,7 +376,6 @@ export default function Interior({ onOpenBrochure }) {
                       <span className="font-mono text-xs font-bold text-brand-orange bg-orange-100 px-2 py-0.5 rounded">
                         {pat.code}
                       </span>
-                      <span className="text-[10px] text-slate-400">IS 14665</span>
                     </div>
                     <strong className="text-xs font-black text-slate-900 block">
                       {pat.name}

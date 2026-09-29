@@ -27,7 +27,7 @@ const ARCHITECT_MODELS = [
   {
     id: "passenger",
     name: "Passenger Elevator",
-    tag: "IS 14665 Standard",
+    tag: "Residential & Commercial",
     badge: "Auto & Manual Doors",
     drawing: assetUrl("/assets/drawings/auto_passenger_technical_drawing.png"),
     planDrawing: assetUrl("/assets/drawings/auto_door_plan.png"),
@@ -129,7 +129,7 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
   };
 
   const cadRequestMessage = encodeURIComponent(
-    `Hello Krupa Elevators, I am an Architect/Engineer. I need the AutoCAD .DWG file and civil structural layout for your ${currentModel.name}. Please connect me with your Nikol CAD Design Studio.`
+    `Hello Krupa Elevators, I am an Architect/Engineer. I need the AutoCAD .DWG file and civil structural layout for your ${currentModel.name}. Please connect me with your CAD design team.`
   );
 
   return (
@@ -147,7 +147,7 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
         icon={Compass}
         badge="Architects & Structural Engineers Hub"
         title="Civil Shaft Dimensions & Technical Drawings"
-        description="Official hoistway specifications compliant with BIS IS 14665 Indian Standards. Designed for architectural planning, structural beam calculations, clear pit depths, and machine-room layout drafting."
+        description="Official hoistway specifications. Designed for architectural planning, structural beam calculations, clear pit depths, and machine-room layout drafting."
         actions={
           <div className="flex flex-wrap items-center gap-3">
             <a
@@ -287,11 +287,11 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
               </div>
             )}
 
-            {/* Nikol Studio Direct Assistance */}
+            {/* CAD Team Direct Assistance */}
             <div className="p-4 rounded-2xl bg-teal-50/60 border border-teal-100 flex items-center justify-between text-xs">
               <div className="space-y-0.5">
                 <span className="font-bold text-teal-900 block">Custom Shaft Geometry?</span>
-                <span className="text-teal-700 text-[11px]">Nikol CAD studio provides bespoke GA layouts.</span>
+                <span className="text-teal-700 text-[11px]">Our CAD team provides bespoke GA layouts.</span>
               </div>
               <a
                 href={`tel:${companyData.contacts.phoneRaw}`}
@@ -454,7 +454,7 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
             </div>
 
             <div className="flex items-center justify-between pt-3 border-t border-slate-800 text-xs text-slate-400">
-              <span>AutoCAD General Arrangement Layout &bull; IS 14665 Compliant</span>
+              <span>AutoCAD General Arrangement Layout</span>
               <a
                 href={zoomModalImage}
                 download={`${currentModel.id}_technical_drawing.png`}

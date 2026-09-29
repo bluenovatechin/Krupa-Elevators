@@ -26,7 +26,7 @@ const PRODUCT_CATEGORIES = [
     icon: DoorClosed,
     title: "Door Systems",
     description:
-      "Manual and automatic entrance door systems — from collapsible lattice gates to VVVF-driven panoramic glass autodoors — engineered to IS 14665 safety standards.",
+      "Manual and automatic entrance door systems — from collapsible lattice gates to VVVF-driven panoramic glass autodoors — engineered for safe, reliable operation.",
     to: "/products/doors",
     cta: "Explore Door Systems"
   },
@@ -105,8 +105,8 @@ export default function Products() {
 
         <CTASection
           title="Need Custom Hoistway Layouts or Non-Standard Dimensions?"
-          subtitle="Our Nikol engineering headquarters creates bespoke AutoCAD GA drawings for narrow shafts, shallow pits, and high-tonnage cargo hoists."
-          badge="Direct Nikol Engineering & CAD Team"
+          subtitle="Our engineering team creates bespoke AutoCAD GA drawings for narrow shafts, shallow pits, and high-tonnage cargo hoists."
+          badge="Direct Engineering & CAD Team"
           variant="gradient"
         />
       </div>

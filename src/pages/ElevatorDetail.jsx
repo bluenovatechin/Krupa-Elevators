@@ -224,7 +224,7 @@ export default function ElevatorDetail({ onOpenBrochure }) {
                     Annotated Structural & Mechanical Breakdown
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                    Core electro-mechanical sub-assemblies engineered to BIS IS 14665 standards for {elevator.name}.
+                    Core electro-mechanical sub-assemblies engineered for {elevator.name}.
                   </p>
                 </div>
 
@@ -332,7 +332,7 @@ export default function ElevatorDetail({ onOpenBrochure }) {
               </button>
 
               <div className="w-full text-center text-xs text-slate-500 pt-3 border-t border-slate-100 mt-3">
-                All dimensions in millimeters (mm). Compliant with IS 14665 & BIS engineering standards.
+                All dimensions in millimeters (mm).
               </div>
             </div>
 
@@ -472,7 +472,7 @@ export default function ElevatorDetail({ onOpenBrochure }) {
         <div className="rounded-3xl bg-gradient-to-r from-brand-teal via-teal-800 to-slate-900 text-white p-8 sm:p-12 flex flex-col md:flex-row justify-between items-center gap-6 shadow-2xl">
           <div className="space-y-2 text-center md:text-left">
             <span className="text-xs font-bold uppercase tracking-widest text-teal-200">
-              Nikol Engineering Office & Kathwada Factory
+              Kathwada Factory, Ahmedabad
             </span>
             <h2 className="text-2xl sm:text-3xl font-black">
               Planning a {elevator.name} Installation?
@@ -533,7 +533,7 @@ export default function ElevatorDetail({ onOpenBrochure }) {
                 />
               </div>
               <div className="w-full text-center text-xs text-slate-500 pt-2">
-                All civil dimensions in millimeters (mm). Compliant with IS 14665 & BIS engineering standards.
+                All civil dimensions in millimeters (mm).
               </div>
             </div>
           </div>

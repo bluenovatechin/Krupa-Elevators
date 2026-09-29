@@ -7,7 +7,7 @@ import ScrollReveal from "../ScrollReveal";
 export default function CTASection({
   title = "Ready to Plan Your Custom Elevator Installation?",
   subtitle = "Our engineering team provides complimentary site surveys, custom CAD layouts, and verified civil shaft calculations across Gujarat and Western India.",
-  badge = "Ahmedabad Factory & Nikol Engineering Hub",
+  badge = "Direct Factory, Ahmedabad",
   variant = "gradient", // "gradient" | "dark" | "teal"
   className = ""
 }) {

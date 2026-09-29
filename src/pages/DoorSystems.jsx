@@ -79,7 +79,7 @@ export default function DoorSystems() {
           </div>
 
           <span className="text-xs text-slate-500 hidden md:inline">
-            Compliant with IS 14665 & BIS safety codes
+            Engineered for safe, reliable operation
           </span>
         </div>
 

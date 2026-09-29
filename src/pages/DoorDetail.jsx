@@ -148,7 +148,7 @@ export default function DoorDetail() {
                 ))}
               </div>
               <div className="text-xs text-slate-400 pt-2 border-t border-slate-800">
-                All dimensions in millimeters (mm). Compliant with IS 14665 & BIS safety codes.
+                All dimensions in millimeters (mm).
               </div>
             </div>
             {door.applications && door.applications.length > 0 && (
@@ -255,7 +255,7 @@ export default function DoorDetail() {
               />
             </div>
             <div className="w-full text-center text-xs text-slate-500 pt-2">
-              All dimensions in millimeters (mm). Compliant with IS 14665 & BIS engineering standards.
+              All dimensions in millimeters (mm).
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { Info } from "lucide-react";
 /**
  * MergedSpecTable
  * 
- * Renders an IS 14665 technical specification table where adjacent cells
+ * Renders a technical specification table where adjacent cells
  * with identical values in a column are intelligently merged using `rowSpan`.
  * Guarantees ONLY ONE unified table per elevator model without filters or toggles.
  */
@@ -77,7 +77,7 @@ export default function MergedSpecTable({ tableData }) {
 
         <div className="flex items-center space-x-2 text-xs text-slate-500 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shrink-0">
           <Info className="w-4 h-4 text-brand-orange" />
-          <span>IS 14665 Compliant • Dimensions in mm</span>
+          <span>Dimensions in mm</span>
         </div>
       </div> */}
 
@@ -171,7 +171,7 @@ export default function MergedSpecTable({ tableData }) {
         <div className="p-3.5 bg-amber-50/80 rounded-2xl border border-amber-200 text-xs text-amber-900 space-y-1">
           <div className="font-bold flex items-center space-x-1.5 text-[11px] uppercase tracking-wider text-amber-800">
             <Info className="w-3.5 h-3.5" />
-            <span>Engineering Notes & Civil Standards (IS 14665):</span>
+            <span>Engineering Notes & Civil Standards:</span>
           </div>
           <ul className="list-disc list-inside space-y-0.5 text-[11px] text-amber-900/90 pl-1">
             {notes.map((note, nIdx) => (

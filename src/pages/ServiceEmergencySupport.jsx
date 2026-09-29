@@ -107,7 +107,7 @@ export default function ServiceEmergencySupport() {
               </div>
               <h3 className="text-lg font-bold text-slate-900">Coverage Area</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Dedicated mobile service vans stationed across <strong>Ahmedabad, Gandhinagar, and Sanand/Bavla</strong> industrial zones, dispatched from our Nikol engineering hub and Kathwada manufacturing works.
+                Dedicated mobile service vans stationed across <strong>Ahmedabad, Gandhinagar, and Sanand/Bavla</strong> industrial zones, dispatched from our Kathwada manufacturing works.
               </p>
             </ScrollReveal>
 

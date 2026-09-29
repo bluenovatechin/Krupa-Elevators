@@ -33,7 +33,7 @@ const navGroups = [
     path: "/about",
     children: [
       { name: "About Us", path: "/about", desc: "Company, mission & facilities" },
-      { name: "Projects & Clients", path: "/about/projects", desc: "Verified installations" },
+      { name: "Projects & Clients", path: "/about/projects", desc: "Our installation record" },
     ],
   },
   { name: "Contact", path: "/contact" },
@@ -48,10 +48,16 @@ export default function Navbar() {
   const navRef = useRef(null);
   const location = useLocation();
 
+  // Matches the path itself or any page beneath it ("/about" ≠ "/aboutus").
   const isActive = (path) => {
     if (path === "/") return location.pathname === "/";
-    return location.pathname.startsWith(path);
+    return location.pathname === path || location.pathname.startsWith(path + "/");
   };
+
+  // Dropdown items: an "Overview" item that shares its group's path is active only on
+  // that exact page, so e.g. /about/projects doesn't also highlight "About Us".
+  const isChildActive = (child, group) =>
+    child.path === group.path ? location.pathname === child.path : isActive(child.path);
 
   const isGroupActive = (group) => {
     if (isActive(group.path)) return true;
@@ -221,7 +227,7 @@ export default function Navbar() {
                             <Link
                               key={child.path}
                               to={child.path}
-                              className={`block px-3.5 py-2.5 rounded-xl transition-colors ${isActive(child.path)
+                              className={`block px-3.5 py-2.5 rounded-xl transition-colors ${isChildActive(child, group)
                                 ? "bg-brand-teal-light text-brand-teal"
                                 : "hover:bg-slate-50 text-slate-700"
                                 }`}
@@ -337,7 +343,7 @@ export default function Navbar() {
                           key={child.path}
                           to={child.path}
                           onClick={() => setMobileMenuOpen(false)}
-                          className={`block px-3.5 py-2 rounded-lg text-[11px] font-semibold transition-all ${isActive(child.path)
+                          className={`block px-3.5 py-2 rounded-lg text-[11px] font-semibold transition-all ${isChildActive(child, group)
                             ? "text-brand-teal bg-brand-teal-light"
                             : "text-slate-600 hover:bg-slate-50"
                             }`}

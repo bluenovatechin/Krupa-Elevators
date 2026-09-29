@@ -425,7 +425,6 @@ export const elevatorMaster = [
     name: "Passenger Elevator",
     category: "Residential & Commercial",
     tagline: "Form, Function & Architectural Flexibility",
-    standard: "BIS IS 14665 Standard",
     image: assetUrl("/assets/elevators/passenger_elevator.jpg"),
     drawings: {
       main: assetUrl("/assets/drawings/auto_passenger_technical_drawing.png"),
@@ -511,7 +510,6 @@ export const elevatorMaster = [
     name: "Capsule Elevator",
     category: "Architectural & Commercial",
     tagline: "Futuristic Design, Architectural Jewel",
-    standard: "BIS IS 14665 Standard",
     image: assetUrl("/assets/elevators/capsule_elevator.jpg"),
     drawings: {
       main: assetUrl("/assets/drawings/capsule_technical_drawing.png"),
@@ -598,7 +596,6 @@ export const elevatorMaster = [
     name: "Hospital Elevator",
     category: "Healthcare & Critical Care",
     tagline: "Smooth, Secure & Rapid Patient Transport",
-    standard: "BIS IS 14665 Standard",
     image: assetUrl("/assets/elevators/hospital_elevator.jpg"),
     drawings: {
       main: assetUrl("/assets/drawings/hospital_technical_drawing.png"),
@@ -689,7 +686,6 @@ export const elevatorMaster = [
     name: "Goods Elevator",
     category: "Industrial & Warehousing",
     tagline: "Sturdy & Heavy Carrying Solutions",
-    standard: "BIS IS 14665 Standard",
     image: assetUrl("/assets/elevators/goods_elevator.jpg"),
     drawings: {
       main: assetUrl("/assets/drawings/goods_technical_drawing.png"),
@@ -766,7 +762,6 @@ export const elevatorMaster = [
     name: "Car Elevator & Multi-Level Parking",
     category: "Automotive & Logistics",
     tagline: "Pioneering Solutions for Automobile Transportation",
-    standard: "BIS IS 14665 Standard",
     image: assetUrl("/assets/elevators/car_elevator.jpg"),
     drawings: {
       main: assetUrl("/assets/drawings/car_elevator_technical_drawing.png"),
@@ -835,7 +830,6 @@ export const elevatorMaster = [
     name: "MRL (Machine Room Less) Elevator",
     category: "Architectural & Space-Saving",
     tagline: "More Space, More Efficiency, Futuristic Tech",
-    standard: "BIS IS 14665 Standard",
     image: assetUrl("/assets/elevators/mrl_elevator.jpg"),
     drawings: {
       main: assetUrl("/assets/drawings/mrl_technical_drawing.png"),
@@ -913,7 +907,6 @@ export const elevatorMaster = [
     name: "Home Elevator",
     category: "Luxury Residential & Private Villas",
     tagline: "Elevate Your Living Standard, Care for Your Family",
-    standard: "BIS IS 14665 Standard",
     image: assetUrl("/assets/elevators/home_elevator.jpg"),
     drawings: {
       main: assetUrl("/assets/drawings/home_technical_drawing.png"),
@@ -991,7 +984,6 @@ export const elevatorMaster = [
     name: "Hydraulic Elevator",
     category: "Low-Rise & Zero Overhead Flexibility",
     tagline: "Green Solutions For Better Tomorrow",
-    standard: "BIS IS 14665 Standard",
     image: assetUrl("/assets/elevators/hydraulic_elevator.jpg"),
     drawings: {
       main: assetUrl("/assets/drawings/hydraulic_technical_drawing.png"),
@@ -1079,7 +1071,7 @@ export const elevatorMaster = [
 // ---------------------------------------------------------------------------
 // getElevatorSingleTable(elevatorId)
 // Provides EXACTLY ONE comprehensive engineering table for each elevator model,
-// strictly matching Krupa Elevators brochure pages 18-22 (IS 14665 standards).
+// strictly matching Krupa Elevators brochure pages 18-22.
 // Contains ALL rows and configurations in a single unified table without
 // filters, tabs, or toggles.
 // ---------------------------------------------------------------------------
@@ -1101,7 +1093,7 @@ export function getElevatorSingleTable(elevatorId) {
         notes: [
           "All Dimensions are in mm.",
           "All hoist way walls should be minimum 230 mm brick or 150 mm R.C.C.",
-          "Standard engineering specifications per IS 14665. Custom dimensions available upon technical consultation."
+          "Standard engineering specifications. Custom dimensions available upon technical consultation."
         ],
         columns: [
           { key: "doorSystem", label: "Door System" },

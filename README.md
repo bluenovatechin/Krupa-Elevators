@@ -1,7 +1,7 @@
 # KRUPA ELEVATORS · Reliable Riding Experience
 
 > **Engineered Vertical Transportation for Residential, Commercial, Healthcare, and Industrial Architecture.**  
-> Compliant with **Bureau of Indian Standards (BIS IS 14665)** and international elevator safety norms.
+> Built to international elevator safety norms.
 
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
@@ -27,7 +27,6 @@ Official interactive web application and technical digital showroom for **KRUPA 
 Our systems integrate German-engineered V3F closed-loop vector drives, green Permanent Magnet Synchronous (PMS) gearless traction machines, 32-bit microprocessor control systems, and fail-safe Automatic Rescue Devices (ARD) for optimal ride comfort, energy efficiency, and passenger safety.
 
 ### Corporate Directory
-- **Head Office**: FF-6 Sagun Enclave, Beside Nikol Community Hall, Nr. Manohar Villa Char Rasta, Nikol, Ahmedabad – 382345, Gujarat, India
 - **Manufacturing Plant**: 353, Gopal Charan Industrial Hub, Kujad-Bakrol Road, Bakrol, Ahmedabad – 382430, Gujarat, India
 - **Technical Hotline**: +91 82008 59171 / +91 97277 64868
 - **Email**: `sales@krupaelevators.com` / `info@krupaelevators.com`
@@ -44,8 +43,8 @@ The platform catalogs Krupa's complete vertical transportation portfolio across 
 
 | Model ID | Elevator Class | Target Architecture | Capacity & Speed | Standard Compliance |
 | :--- | :--- | :--- | :--- | :--- |
-| [`passenger`](https://vyom1912.github.io/KrupaElevator/products/elevators/passenger) | **Passenger Elevator** | Residential apartments & corporate office towers | 4 to 26 Persons (272–1768 kg)<br>0.63 to 2.0 m/s | BIS IS 14665 |
-| [`capsule`](https://vyom1912.github.io/KrupaElevator/products/elevators/capsule) | **Capsule / Panoramic** | Shopping malls, luxury hotels & glass atriums | Semi-circular & polygon glass<br>0.63 to 1.5 m/s | BIS IS 14665 / Architectural |
+| [`passenger`](https://vyom1912.github.io/KrupaElevator/products/elevators/passenger) | **Passenger Elevator** | Residential apartments & corporate office towers | 4 to 26 Persons (272–1768 kg)<br>0.63 to 2.0 m/s | — |
+| [`capsule`](https://vyom1912.github.io/KrupaElevator/products/elevators/capsule) | **Capsule / Panoramic** | Shopping malls, luxury hotels & glass atriums | Semi-circular & polygon glass<br>0.63 to 1.5 m/s | Architectural |
 | [`hospital`](https://vyom1912.github.io/KrupaElevator/products/elevators/hospital) | **Hospital / Stretcher** | Multi-speciality hospitals & surgical clinics | 15 to 26 Persons (1020–1768 kg)<br>Deep 2400mm ICU bed clearance | Healthcare / EMC Shielded |
 | [`goods`](https://vyom1912.github.io/KrupaElevator/products/elevators/goods) | **Goods & Freight** | Industrial manufacturing, warehouses & logistics | 500 kg to 4000 kg<br>Heavy axle load structural steel | Industrial Heavy-Duty |
 | [`car`](https://vyom1912.github.io/KrupaElevator/products/elevators/car) | **Automobile / Car** | Multi-level vehicle parking & showrooms | 2500 kg to 4000 kg<br>Drive-through front/rear doors | Heavy Automobile Class |
@@ -99,7 +98,7 @@ Krupa Elevators provides complete lifecycle support from initial engineering con
 
 1. **5 Service Pillars**:
    - **Specialized Service Team**: Certified technicians trained in microprocessor diagnostics and V3F vector parameter tuning.
-   - **Professional Supervisors**: Rigorous quality, plumb line, and ride comfort audits compliant with IS 14665.
+   - **Professional Supervisors**: Rigorous quality, plumb line, and ride comfort audits.
    - **Genuine Spare Parts**: 100% factory-tested OEM traction parts, door operators, PCBs, and wire ropes stocked locally.
    - **Preventive Maintenance**: Monthly 35-point safety inspection protocols ensuring maximum MTBF.
    - **Elevator Monitoring System**: 24/7 IoT operational telemetry, fault alert dispatch, and predictive maintenance tracking.

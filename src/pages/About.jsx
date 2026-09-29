@@ -23,16 +23,12 @@ import { assetUrl } from "../utils/assetPath";
 const attributeIcons = [Cpu, Sparkles, ShieldCheck, Maximize2, Activity];
 
 export default function About({ onOpenBrochure }) {
-  // Every elevatorMaster entry carries the same compliance standard — surface
-  // it once instead of inventing a certifications list.
-  const complianceStandard =
-    elevatorMaster.find((e) => e.standard)?.standard || "BIS IS 14665 Standard";
 
   return (
     <div className="min-h-screen bg-slate-50 pb-12">
       <Seo
         title="About Us"
-        description="KRUPA ELEVATORS — Ahmedabad-based elevator manufacturer with a Nikol design & engineering office and a Kathwada manufacturing works, engineering elevators to the BIS IS 14665 standard."
+        description="KRUPA ELEVATORS — Ahmedabad-based elevator manufacturer with its own manufacturing works in Kathwada, Ahmedabad."
       />
 
       <PageHero
@@ -149,41 +145,7 @@ export default function About({ onOpenBrochure }) {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-            {/* Registered Office — Nikol */}
-            <ScrollReveal direction="up" distance={18} className="relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 group">
-              <div className="h-56 sm:h-64 relative overflow-hidden">
-                <img
-                  src={assetUrl("/assets/facilities/design-studio.jpg")}
-                  alt="Nikol CAD Design Studio & Registered Office"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-mono font-bold text-teal-300 border border-teal-500/20">
-                  HUB 01 // NIKOL DESIGN OFFICE
-                </div>
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <h4 className="text-lg font-bold text-white leading-tight">{companyData.contacts.office.title}</h4>
-                  <span className="text-xs text-teal-200 font-mono">
-                    AutoCAD GA Hoistway Drawings &amp; Structural Load Guidance
-                  </span>
-                </div>
-              </div>
-              <div className="p-5 bg-white space-y-3">
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Dedicated engineering team preparing custom General Arrangement (GA) hoistway layouts, overhead
-                  beam structural calculations, pit depth guidance, and 3D architectural renderings tailored for
-                  builder project proposals.
-                </p>
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-mono">
-                  <span className="flex items-center space-x-1">
-                    <Building2 className="w-3.5 h-3.5 text-brand-teal" />
-                    <span>{companyData.contacts.office.address}</span>
-                  </span>
-                </div>
-              </div>
-            </ScrollReveal>
-
+          <div className="grid grid-cols-1 gap-6 items-stretch">
             {/* Manufacturing Works — Kathwada */}
             <ScrollReveal direction="up" distance={18} delay={60} className="relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200 group">
               <div className="h-56 sm:h-64 relative overflow-hidden">
@@ -226,12 +188,12 @@ export default function About({ onOpenBrochure }) {
             <div className="flex items-center space-x-2">
               <ShieldCheck className="w-5 h-5 text-brand-teal" />
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-teal">
-                Standards &amp; Compliance
+                Quality &amp; Testing
               </span>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed max-w-3xl">
               Every elevator class in our catalogue — from Passenger and Capsule elevators to Goods, Car, MRL,
-              Home and Hydraulic lifts — is engineered to the <strong>{complianceStandard}</strong>. All
+              Home and Hydraulic lifts — is engineered and built in-house. All
               structural frames, car sling assemblies, and electrical control cabinets are bench-tested at our
               Kathwada works before dispatch to site.
             </p>
@@ -287,7 +249,7 @@ export default function About({ onOpenBrochure }) {
 
         <CTASection
           title="Ready to Plan Your Custom Elevator Installation?"
-          subtitle="Our Nikol engineering team and Kathwada manufacturing works deliver complimentary site surveys, custom CAD layouts, and verified civil shaft calculations across Gujarat."
+          subtitle="Our engineering team and Kathwada manufacturing works deliver complimentary site surveys, custom CAD layouts, and verified civil shaft calculations across Gujarat."
         />
         {onOpenBrochure && (
           <div className="flex justify-center -mt-8">
