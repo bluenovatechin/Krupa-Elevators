@@ -97,6 +97,14 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   };
 
+  // Opening the mobile menu expands the section you are currently in.
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const current = navGroups.find((g) => g.children && isGroupActive(g));
+    setMobileOpenGroup(current ? current.name : null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mobileMenuOpen]);
+
   // Close when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -137,42 +145,53 @@ export default function Navbar() {
     document.addEventListener("touchstart", handleOutsideClick, { passive: true });
     document.addEventListener("keydown", handleKeyDown);
 
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    // Lock page scrolling while the mobile menu is open. This must be set on <html>, not
+    // <body>: index.css gives <html> `overflow-x: clip`, so `overflow: hidden` on <body>
+    // turns the body into its own scroll box and the sticky navbar (with the open menu)
+    // scrolls away off the top of the screen.
+    const root = document.documentElement;
+    root.style.overflow = mobileMenuOpen ? "hidden" : "";
 
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("touchstart", handleOutsideClick);
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
+      root.style.overflow = "";
     };
   }, [mobileMenuOpen]);
 
   return (
-    <header ref={navRef} className="sticky top-0 z-50 transition-all duration-200">
+    <header ref={navRef} className="sticky top-0 z-50 transition-all duration-300">
+      {/* Mobile backdrop — dims the page and closes the menu on tap. Kept outside <nav>:
+          the nav's backdrop-blur would otherwise confine this fixed layer to the navbar. */}
+      {mobileMenuOpen && (
+        <div
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 bg-slate-950/50 backdrop-blur-xs -z-10 lg:hidden animate-in fade-in duration-300"
+          aria-hidden="true"
+        />
+      )}
       {/* Main Compact Navbar */}
       <nav
-        className={`bg-white/95 backdrop-blur-md border-b transition-all duration-200 ${scrolled
-          ? "shadow-sm border-slate-200/90 py-0"
-          : "border-slate-200/70 py-0.5"
-          }`}
+        className={`bg-white/95 backdrop-blur-md border-b transition-all duration-300 ease-out ${
+          scrolled
+            ? "shadow-sm border-slate-200/90 py-0"
+            : "border-slate-200/70 py-0.5"
+        }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14 sm:h-15">
-            {/* Logo Only (no text, no slogan) */}
+            {/* Logo */}
             <Link
               to="/"
               onClick={handleLogoClick}
-              className="flex items-center shrink-0 group focus:outline-none cursor-pointer"
+              className="flex items-center shrink-0 group focus:outline-none cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
               aria-label="Krupa Elevators Home"
             >
               <img
                 src={companyData.logo}
                 alt="Krupa Elevators"
-                className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
+                className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
 
@@ -188,10 +207,11 @@ export default function Navbar() {
                       key={group.name}
                       to={group.path}
                       onClick={(e) => handleNavClick(e, group.path)}
-                      className={`px-3 py-1.5 rounded-lg text-xs xl:text-[13px] font-semibold transition-all ${active
-                        ? "text-brand-teal bg-brand-teal-light font-bold"
-                        : "text-slate-600 hover:text-brand-teal hover:bg-slate-100/70"
-                        }`}
+                      className={`px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-semibold transition-all duration-200 ease-out ${
+                        active
+                          ? "text-brand-teal bg-brand-teal-light font-bold shadow-2xs"
+                          : "text-slate-600 hover:text-brand-teal hover:bg-slate-100/70"
+                      }`}
                     >
                       {group.name}
                     </Link>
@@ -209,32 +229,40 @@ export default function Navbar() {
                     <Link
                       to={group.path}
                       onClick={() => setDesktopOpenGroup(null)}
-                      className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs xl:text-[13px] font-semibold transition-all cursor-pointer ${active
-                        ? "text-brand-teal bg-brand-teal-light font-bold"
-                        : "text-slate-600 hover:text-brand-teal hover:bg-slate-100/70"
-                        }`}
+                      className={`flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-semibold transition-all duration-200 ease-out cursor-pointer ${
+                        active
+                          ? "text-brand-teal bg-brand-teal-light font-bold shadow-2xs"
+                          : "text-slate-600 hover:text-brand-teal hover:bg-slate-100/70"
+                      }`}
                       aria-haspopup="true"
                       aria-expanded={open}
                     >
                       <span>{group.name}</span>
-                      <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-300 ease-out ${
+                          open ? "rotate-180 text-brand-teal" : "text-slate-400"
+                        }`}
+                      />
                     </Link>
 
                     {open && (
-                      <div className="absolute top-full left-0 pt-2 w-72 z-50">
-                        <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-2 divide-y divide-slate-100">
+                      <div className="absolute top-full left-0 pt-2 w-72 z-50 animate-in fade-in zoom-in-95 slide-in-from-top-1.5 duration-200 ease-out">
+                        <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-2 divide-y divide-slate-100 ring-1 ring-black/5">
                           {group.children.map((child) => (
                             <Link
                               key={child.path}
                               to={child.path}
-                              className={`block px-3.5 py-2.5 rounded-xl transition-colors ${isChildActive(child, group)
-                                ? "bg-brand-teal-light text-brand-teal"
-                                : "hover:bg-slate-50 text-slate-700"
-                                }`}
+                              className={`block px-3.5 py-2.5 rounded-xl transition-all duration-200 ease-out group/item ${
+                                isChildActive(child, group)
+                                  ? "bg-brand-teal-light text-brand-teal font-bold"
+                                  : "hover:bg-slate-50 text-slate-700 hover:text-brand-teal hover:translate-x-1"
+                              }`}
                             >
-                              <span className="block text-xs font-bold">{child.name}</span>
+                              <span className="block text-xs font-bold transition-colors">{child.name}</span>
                               {child.desc && (
-                                <span className="block text-[11px] text-slate-500 mt-0.5">{child.desc}</span>
+                                <span className="block text-[11px] text-slate-500 mt-0.5 group-hover/item:text-slate-600">
+                                  {child.desc}
+                                </span>
                               )}
                             </Link>
                           ))}
@@ -250,45 +278,40 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center space-x-2">
               <Link
                 to="/#estimator"
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900 hover:bg-brand-teal text-white text-xs font-bold transition-all shadow-xs hover:scale-105 active:scale-95"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900 hover:bg-brand-teal text-white text-xs font-bold transition-all duration-200 shadow-xs hover:scale-105 active:scale-95"
               >
                 <span>60s Estimate</span>
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-brand-orange text-white text-xs font-bold shadow-xs hover:bg-brand-orange-hover transition-all transform active:scale-95"
+                className="inline-flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-brand-orange text-white text-xs font-bold shadow-xs hover:bg-brand-orange-hover transition-all duration-200 transform hover:scale-105 active:scale-95"
               >
                 <span>Request Survey</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
             </div>
 
-            {/* Mobile Menu Hamburger */}
+            {/* Mobile Menu Hamburger (Original Clean Sleek Design) */}
             <div className="flex items-center lg:hidden space-x-1.5">
               <button
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
-                className="p-1.5 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none transition-colors"
+                className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 hover:text-brand-teal focus:outline-none active:scale-95 transition-all duration-200 cursor-pointer"
                 aria-label="Toggle Navigation Menu"
                 aria-expanded={mobileMenuOpen}
               >
-                {mobileMenuOpen ? <X className="w-5 h-5 text-brand-orange" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 text-brand-orange transition-transform duration-300 rotate-90" />
+                ) : (
+                  <Menu className="w-5 h-5 transition-transform duration-200" />
+                )}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Backdrop Overlay - closes navbar when clicking outside */}
+        {/* Mobile Slide-Down Menu (Clean original accordion design with smooth transitions) */}
         {mobileMenuOpen && (
-          <div
-            onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 top-[88px] bg-slate-950/50 backdrop-blur-xs z-40 lg:hidden animate-in fade-in duration-200"
-            aria-hidden="true"
-          />
-        )}
-
-        {/* Mobile Slide-Down Menu (accordion for groups) */}
-        {mobileMenuOpen && (
-          <div className="relative z-50 lg:hidden bg-white border-t border-slate-200 px-4 pt-2 pb-5 space-y-1.5 shadow-xl animate-in slide-in-from-top-2 duration-200 max-h-[78vh] overflow-y-auto">
+          <div className="relative z-50 lg:hidden bg-white border-t border-slate-200 px-4 pt-2 pb-5 space-y-1.5 shadow-xl animate-in slide-in-from-top-3 fade-in duration-300 ease-out max-h-[78vh] overflow-y-auto">
             {navGroups.map((group) => {
               const active = isGroupActive(group);
               const hasChildren = Array.isArray(group.children) && group.children.length > 0;
@@ -299,10 +322,11 @@ export default function Navbar() {
                     key={group.name}
                     to={group.path}
                     onClick={(e) => handleNavClick(e, group.path)}
-                    className={`flex justify-between items-center px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${active
-                      ? "text-brand-teal bg-brand-teal-light"
-                      : "text-slate-700 hover:bg-slate-50"
-                      }`}
+                    className={`flex justify-between items-center px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 ${
+                      active
+                        ? "text-brand-teal bg-brand-teal-light"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-brand-teal"
+                    }`}
                   >
                     <span>{group.name}</span>
                     <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
@@ -312,41 +336,41 @@ export default function Navbar() {
 
               const expanded = mobileOpenGroup === group.name;
               return (
-                <div key={group.name} className="rounded-xl overflow-hidden">
-                  <div
-                    className={`flex items-center justify-between px-3.5 py-1 rounded-xl transition-all ${active
-                      ? "text-brand-teal bg-brand-teal-light"
-                      : "text-slate-700 hover:bg-slate-50"
-                      }`}
+                <div key={group.name} className="rounded-xl overflow-hidden transition-all duration-200">
+                  {/* The whole row toggles the sub-menu; the group's overview page is its first item. */}
+                  <button
+                    type="button"
+                    onClick={() => setMobileOpenGroup((prev) => (prev === group.name ? null : group.name))}
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-left transition-all duration-200 cursor-pointer ${
+                      active
+                        ? "text-brand-teal bg-brand-teal-light"
+                        : "text-slate-700 hover:bg-slate-50"
+                    }`}
+                    aria-expanded={expanded}
+                    aria-controls={`mobile-sub-${group.name}`}
                   >
-                    <Link
-                      to={group.path}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex-1 py-2 text-xs font-bold"
-                    >
-                      <span>{group.name}</span>
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={() => setMobileOpenGroup((prev) => (prev === group.name ? null : group.name))}
-                      className="p-1.5 -mr-1 text-slate-400 hover:text-brand-teal transition-colors rounded-lg cursor-pointer"
-                      aria-expanded={expanded}
-                      aria-label={`Toggle ${group.name} sub-menu`}
-                    >
-                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${expanded ? "rotate-180 text-brand-teal" : ""}`} />
-                    </button>
-                  </div>
+                    <span>{group.name}</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-300 ease-out ${
+                        expanded ? "rotate-180 text-brand-teal" : "text-slate-400"
+                      }`}
+                    />
+                  </button>
                   {expanded && (
-                    <div className="pl-3 pr-1 py-1 space-y-1">
+                    <div
+                      id={`mobile-sub-${group.name}`}
+                      className="pl-3 pr-1 py-1 space-y-1 animate-in fade-in slide-in-from-top-1 duration-200"
+                    >
                       {group.children.map((child) => (
                         <Link
                           key={child.path}
                           to={child.path}
                           onClick={() => setMobileMenuOpen(false)}
-                          className={`block px-3.5 py-2 rounded-lg text-[11px] font-semibold transition-all ${isChildActive(child, group)
-                            ? "text-brand-teal bg-brand-teal-light"
-                            : "text-slate-600 hover:bg-slate-50"
-                            }`}
+                          className={`block px-3.5 py-2 rounded-lg text-[11px] font-semibold transition-all duration-200 ${
+                            isChildActive(child, group)
+                              ? "text-brand-teal bg-brand-teal-light font-bold"
+                              : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 hover:translate-x-0.5"
+                          }`}
                         >
                           {child.name}
                         </Link>
@@ -361,14 +385,14 @@ export default function Navbar() {
               <Link
                 to="/#estimator"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex justify-center items-center space-x-1.5 px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold shadow-sm"
+                className="w-full flex justify-center items-center space-x-1.5 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-brand-teal text-white text-xs font-bold shadow-sm transition-all duration-200 active:scale-98"
               >
                 <span>60s Lift Estimator</span>
               </Link>
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex justify-center items-center space-x-1.5 px-4 py-2.5 rounded-xl bg-brand-orange text-white text-xs font-bold shadow-sm hover:bg-brand-orange-hover"
+                className="w-full flex justify-center items-center space-x-1.5 px-4 py-2.5 rounded-xl bg-brand-orange text-white text-xs font-bold shadow-sm hover:bg-brand-orange-hover transition-all duration-200 active:scale-98"
               >
                 <span>Request Free Site Survey & Quote</span>
                 <ArrowRight className="w-3.5 h-3.5" />

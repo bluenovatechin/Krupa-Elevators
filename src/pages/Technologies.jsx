@@ -45,8 +45,9 @@ export default function Technologies() {
   return (
     <div className="min-h-screen bg-slate-50 pb-12">
       <Seo
-        title="Technology & Drive Systems"
-        description="PMS gearless & geared traction machines, microprocessor control panels, V3F inverter drives, and the passenger safety ecosystem behind every Krupa Elevators installation."
+        title="Elevator Drive Technology & Safety Systems in Ahmedabad | Krupa Elevators"
+        description="High-efficiency PMSM gearless motors, German V3F vector inverters, open-protocol controllers, and failsafe ARD passenger safety technology engineered by Krupa Elevators in Kathwada, Ahmedabad."
+        keywords="elevator technology Ahmedabad, PMSM gearless elevator drive, V3F inverter lift, automatic rescue device elevator, open protocol elevator controller"
       />
 
       {/* ========================================================================= */}
@@ -525,7 +526,12 @@ export default function Technologies() {
                 </div>
               </div>
 
-              <div className="overflow-x-auto rounded-2xl border border-slate-800 text-xs">
+              {/* Mobile swipe hint banner */}
+              <div className="md:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 text-teal-300 text-[11px] font-medium border border-slate-700">
+                <span>↔ Swipe horizontally to compare drive specs</span>
+              </div>
+
+              <div className="overflow-x-auto rounded-2xl border border-slate-800 text-xs touch-pan-x">
                 <table className="w-full text-left">
                   <thead className="bg-slate-800 text-slate-300 font-bold border-b border-slate-700">
                     <tr>

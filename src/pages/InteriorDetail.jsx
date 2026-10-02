@@ -95,17 +95,17 @@ export default function InteriorDetail({ onOpenBrochure }) {
         tagline={model.tagline}
         description={model.clientOverview}
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <Link
               to="/contact"
-              className="px-5 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center space-x-2"
+              className="px-5 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center justify-center space-x-2 min-h-[44px]"
             >
               <span>Request This Cabin Finish</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </Link>
             <Link
               to="/products/interiors"
-              className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold transition-all shadow-xs"
+              className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center min-h-[44px]"
             >
               All Cabin Finishes
             </Link>

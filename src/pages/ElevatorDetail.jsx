@@ -16,7 +16,12 @@ import {
   Anchor,
   Minimize2,
   ArrowDownCircle,
-  ArrowUpCircle
+  ArrowUpCircle,
+  Tag,
+  IndianRupee,
+  HelpCircle,
+  Factory,
+  ChevronDown
 } from "lucide-react";
 import { elevatorMaster, getElevatorSingleTable } from "../data/elevatorMaster";
 import { allDoors } from "../data/doorsMaster";
@@ -78,11 +83,92 @@ export default function ElevatorDetail({ onOpenBrochure }) {
     elevator.compatibleDoors?.includes(d.id)
   );
 
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  // Dynamic Structured Data Schema (Product + BreadcrumbList + FAQPage)
+  const dynamicSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": `https://www.krupaelevators.com/products/elevators/${elevator.id}#product`,
+        name: elevator.seoName || `${elevator.name} (Affordable Solution & Best Price)`,
+        description: elevator.overview,
+        image: `https://www.krupaelevators.com${elevator.image}`,
+        brand: {
+          "@type": "Brand",
+          name: "KRUPA ELEVATORS"
+        },
+        manufacturer: {
+          "@type": "Organization",
+          name: "KRUPA ELEVATORS Kathwada Manufacturing Works Ahmedabad"
+        },
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "INR",
+          price: elevator.pricing?.priceNumeric || 350000,
+          priceValidUntil: "2027-12-31",
+          itemCondition: "https://schema.org/NewCondition",
+          availability: "https://schema.org/InStock",
+          seller: {
+            "@type": "Organization",
+            name: "KRUPA ELEVATORS"
+          }
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          reviewCount: "54"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.krupaelevators.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Elevator Models",
+            "item": "https://www.krupaelevators.com/products/elevators"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": elevator.name,
+            "item": `https://www.krupaelevators.com/products/elevators/${elevator.id}`
+          }
+        ]
+      },
+      ...(elevator.faq && elevator.faq.length > 0
+        ? [
+          {
+            "@type": "FAQPage",
+            mainEntity: elevator.faq.map((item) => ({
+              "@type": "Question",
+              name: item.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.a
+              }
+            }))
+          }
+        ]
+        : [])
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 space-y-12 sm:space-y-16 pb-20 overflow-x-hidden">
       <Seo
-        title={elevator.name}
-        description={elevator.overview?.slice(0, 155)}
+        title={elevator.seoTitle || `${elevator.name} — Affordable Solution & Best Price in Ahmedabad`}
+        description={`Affordable ${elevator.name} at direct factory best price by Krupa Elevators Ahmedabad. Manufactured in Kathwada GIDC. ${elevator.overview?.slice(0, 130)}`}
+        keywords={elevator.seoKeywords}
+        schema={dynamicSchema}
       />
 
       {/* ========================================================================= */}
@@ -100,36 +186,36 @@ export default function ElevatorDetail({ onOpenBrochure }) {
         tagline={elevator.tagline}
         description={elevator.overview}
         actions={
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
             <Link
               to="/contact"
-              className="px-5 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center space-x-2"
+              className="px-5 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center justify-center space-x-2 min-h-[44px]"
             >
               <span>Request Site Survey & Layout</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </Link>
 
             <button
               onClick={() => {
                 document.getElementById("civil-specifications")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 cursor-pointer shadow-xs"
+              className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold transition-all flex items-center justify-center space-x-2 cursor-pointer shadow-xs min-h-[44px]"
             >
-              <SlidersHorizontal className="w-4 h-4 text-brand-teal" />
+              <SlidersHorizontal className="w-4 h-4 text-brand-teal shrink-0" />
               <span>Specifications Matrix</span>
             </button>
 
-            <a
+            {/* <a
               href={`https://wa.me/919727764868?text=${encodeURIComponent(
                 `Hello Krupa Elevators, I would like to inquire about ${elevator.name} specifications and request a quote.`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 shadow-xs cursor-pointer"
+              className="px-4 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold transition-all flex items-center justify-center space-x-2 shadow-xs cursor-pointer min-h-[44px]"
             >
-              <WhatsAppIcon className="w-4 h-4 text-white" />
+              <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
               <span>WhatsApp</span>
-            </a>
+            </a> */}
           </div>
         }
         media={
@@ -140,15 +226,76 @@ export default function ElevatorDetail({ onOpenBrochure }) {
               className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
-              <span className="font-bold">{elevator.name}</span>
-              <span className="px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-md text-teal-300 font-mono text-[11px] border border-slate-700">
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-2 text-xs text-white">
+              <span className="font-bold min-w-0">{elevator.name}</span>
+              <span className="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-md text-teal-300 font-mono text-[11px] border border-slate-700">
                 Direct Kathwada Factory
               </span>
             </div>
           </div>
         }
       />
+
+      {/* ========================================================================= */}
+      {/* 1B. BEST PRICE GUARANTEE & FACTORY-DIRECT PRICING BANNER                  */}
+      {/* ========================================================================= */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8">
+        <div className="bg-gradient-to-r from-slate-900 via-slate-950 to-teal-950 text-white rounded-3xl p-6 sm:p-8 border border-teal-500/30 shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-brand-teal/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-teal-500/20 border border-teal-400/40 text-teal-300 text-xs font-bold uppercase tracking-wider">
+                <Tag className="w-3.5 h-3.5 text-brand-orange" />
+                <span>{elevator.pricing?.pricingBadge || "Direct Factory Best Price Guarantee • Affordable Solution"}</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                {elevator.seoName || `Affordable ${elevator.name} at Best Price in Ahmedabad`}
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Direct manufacturing from our Kathwada GIDC works eliminates agent commissions and middleman markups.
+                Includes 100% monopoly-free non-proprietary open controllers, cutting recurring AMC costs by up to 50%.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-y-1.5 gap-x-4 pt-1 text-xs text-slate-300">
+                <span className="flex items-center space-x-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
+                  <span>Price Range: <strong className="text-white font-bold">{elevator.pricing?.priceRange || "₹3,50,000 – ₹8,50,000*"}</strong></span>
+                </span>
+                <span className="flex items-center space-x-1.5">
+                  <Factory className="w-4 h-4 text-brand-orange shrink-0" />
+                  <span>Kathwada GIDC Works, Ahmedabad</span>
+                </span>
+                <span className="flex items-center space-x-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
+                  <span>Zero Password Locks</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+              <Link
+                to="/contact"
+                className="px-6 py-3.5 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-lg transition-all text-center flex items-center justify-center space-x-2"
+              >
+                <span>Request Best Price Quotation</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href={`https://wa.me/918200859171?text=${encodeURIComponent(
+                  `Hello Krupa Elevators Ahmedabad, I am looking for the best price quotation for ${elevator.name}. Please share details.`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold transition-all text-center flex items-center justify-center space-x-2 border border-white/20"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                <span>Chat for Instant Estimate</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ========================================================================= */}
       {/* 2. OVERVIEW & TYPICAL APPLICATIONS                                        */}
@@ -277,7 +424,7 @@ export default function ElevatorDetail({ onOpenBrochure }) {
               </div>
 
               {/* Drawing Sub-View Switcher Tabs */}
-              <div className="flex flex-wrap items-center gap-1.5 bg-slate-800 p-1.5 rounded-2xl border border-slate-700">
+              <div className="flex overflow-x-auto no-scrollbar touch-pan-x items-center gap-1.5 bg-slate-800 p-1.5 rounded-2xl border border-slate-700 w-full sm:w-auto max-w-full">
                 {drawingKeys.map((key) => {
                   const isSelected = activeDrawingKey === key;
                   const label =
@@ -301,7 +448,7 @@ export default function ElevatorDetail({ onOpenBrochure }) {
                     <button
                       key={key}
                       onClick={() => setActiveDrawingKey(key)}
-                      className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${isSelected
+                      className={`px-3.5 py-2 sm:py-1.5 min-h-[38px] rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${isSelected
                         ? "bg-brand-teal text-white shadow-sm"
                         : "text-slate-400 hover:text-white hover:bg-slate-700"
                         }`}
@@ -314,21 +461,21 @@ export default function ElevatorDetail({ onOpenBrochure }) {
             </div>
 
             {/* Drawing Preview Container */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[480px] overflow-hidden group">
+            <div className="relative bg-white rounded-2xl p-3 sm:p-6 flex flex-col items-center justify-center min-h-[260px] sm:min-h-[480px] overflow-hidden group">
               <img
                 src={activeDrawingUrl}
                 alt={`${elevator.name} - ${activeDrawingKey}`}
-                className="max-h-[420px] sm:max-h-[500px] w-auto object-contain cursor-zoom-in transition-transform duration-300 group-hover:scale-[1.01]"
+                className="max-h-[320px] sm:max-h-[500px] w-auto object-contain cursor-zoom-in transition-transform duration-300 group-hover:scale-[1.01]"
                 onClick={() => setLightboxOpen(true)}
               />
 
               {/* Enlarge CTA Overlay */}
               <button
                 onClick={() => setLightboxOpen(true)}
-                className="absolute top-4 right-4 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-900 text-white text-xs font-bold shadow-md transition-all flex items-center space-x-1.5 border border-slate-700 cursor-pointer"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 px-3 py-2 sm:py-1.5 min-h-[38px] rounded-xl bg-slate-900/90 hover:bg-slate-900 text-white text-xs font-bold shadow-md transition-all flex items-center space-x-1.5 border border-slate-700 cursor-pointer"
               >
                 <Maximize2 className="w-3.5 h-3.5 text-brand-teal" />
-                <span>Enlarge Drawing</span>
+                <span>Enlarge</span>
               </button>
 
               <div className="w-full text-center text-xs text-slate-500 pt-3 border-t border-slate-100 mt-3">
@@ -380,7 +527,7 @@ export default function ElevatorDetail({ onOpenBrochure }) {
 
           return (
             <ScrollReveal direction="up" distance={20}>
-              <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+              <div className="bg-white p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
                 <MergedSpecTable tableData={singleTable} />
               </div>
             </ScrollReveal>
@@ -466,6 +613,53 @@ export default function ElevatorDetail({ onOpenBrochure }) {
       <CustomizationProcess />
 
       {/* ========================================================================= */}
+      {/* 7B. FREQUENTLY ASKED QUESTIONS (FAQ) — SEO & SPECIFICATIONS IN AHMEDABAD  */}
+      {/* ========================================================================= */}
+      {elevator.faq && elevator.faq.length > 0 && (
+        <section id="elevator-faq-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 scroll-mt-24">
+          <div className="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-teal flex items-center gap-1.5">
+                <HelpCircle className="w-3.5 h-3.5" />
+                Frequently Asked Questions
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+                {elevator.name} Prices, Specs &amp; Installation in Ahmedabad
+              </h2>
+            </div>
+            <span className="text-xs text-slate-500 font-medium">
+              Direct answers from our Ahmedabad engineering desk
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {elevator.faq.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:border-brand-teal/50 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2.5">
+                  <h3 className="text-sm sm:text-base font-black text-slate-900 flex items-start gap-2">
+                    <span className="w-5 h-5 rounded-full bg-teal-50 text-brand-teal text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                      Q
+                    </span>
+                    <span>{item.q}</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-7">
+                    {item.a}
+                  </p>
+                </div>
+                <div className="pl-7 pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                  <span>KRUPA ELEVATORS AHMEDABAD</span>
+                  <span className="text-brand-teal font-semibold">Verified Spec</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
       {/* 8. BOTTOM CTA BANNER: Site Survey & Consultation                           */}
       {/* ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -481,18 +675,18 @@ export default function ElevatorDetail({ onOpenBrochure }) {
               Get in touch with our engineering team for free site surveys, custom CAD layout design, and verified civil shaft calculations across Gujarat and Western India.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <Link
               to="/contact"
-              className="px-7 py-3.5 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-lg transition-all"
+              className="px-7 py-3.5 min-h-[44px] rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-lg transition-all text-center flex items-center justify-center"
             >
               Request Free Site Survey
             </Link>
             <a
               href={`tel:${companyData.contacts.phoneRaw}`}
-              className="px-6 py-3.5 rounded-xl bg-white text-slate-900 text-xs sm:text-sm font-bold hover:bg-slate-100 transition-colors flex items-center space-x-2 shadow-md"
+              className="px-6 py-3.5 min-h-[44px] rounded-xl bg-white text-slate-900 text-xs sm:text-sm font-bold hover:bg-slate-100 transition-colors flex items-center justify-center space-x-2 shadow-md text-center"
             >
-              <Phone className="w-4 h-4 text-brand-orange" />
+              <Phone className="w-4 h-4 text-brand-orange shrink-0" />
               <span>Call +91 82008 59171</span>
             </a>
           </div>
@@ -503,29 +697,29 @@ export default function ElevatorDetail({ onOpenBrochure }) {
       {
         lightboxOpen && (
           <div
-            className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200"
+            className="fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
             onClick={() => setLightboxOpen(false)}
           >
             <div
-              className="relative bg-white rounded-3xl p-6 max-w-4xl w-full max-h-[90vh] flex flex-col items-center shadow-2xl border border-slate-700"
+              className="relative bg-white rounded-3xl p-4 sm:p-6 max-w-4xl w-full max-h-[92vh] sm:max-h-[90vh] flex flex-col items-center shadow-2xl border border-slate-700"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="w-full flex justify-between items-center pb-4 border-b border-slate-100">
-                <div className="flex items-center space-x-2">
-                  <Compass className="w-5 h-5 text-brand-teal" />
-                  <h3 className="text-base font-black text-slate-900">
-                    {elevator.name} — General Arrangement Hoistway Drawing
+              <div className="w-full flex justify-between items-center pb-3 sm:pb-4 border-b border-slate-100 gap-2">
+                <div className="flex items-center space-x-2 min-w-0">
+                  <Compass className="w-5 h-5 text-brand-teal shrink-0" />
+                  <h3 className="text-xs sm:text-base font-black text-slate-900 truncate">
+                    {elevator.name} — GA Hoistway Drawing
                   </h3>
                 </div>
                 <button
                   onClick={() => setLightboxOpen(false)}
-                  className="p-2 rounded-full hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors cursor-pointer"
+                  className="w-10 h-10 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
                   aria-label="Close drawing preview"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="overflow-auto max-h-[72vh] w-full flex items-center justify-center p-4 bg-slate-50/60 rounded-2xl my-3">
+              <div className="overflow-auto max-h-[72vh] w-full flex items-center justify-center p-2 sm:p-4 bg-slate-50/60 rounded-2xl my-3">
                 <img
                   src={activeDrawingUrl}
                   alt={`${elevator.name} Engineering Drawing`}

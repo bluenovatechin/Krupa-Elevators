@@ -62,13 +62,13 @@ export default function DoorDetail() {
         tagline={door.tagline}
         description={door.summary}
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <Link
               to="/contact"
-              className="px-5 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center space-x-2"
+              className="px-5 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center justify-center space-x-2 min-h-[44px]"
             >
               <span>Request Custom Door Quote</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </Link>
             <a
               href={`https://wa.me/919727764868?text=${encodeURIComponent(
@@ -76,7 +76,7 @@ export default function DoorDetail() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 shadow-xs cursor-pointer"
+              className="px-4 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold transition-all flex items-center justify-center space-x-2 shadow-xs cursor-pointer min-h-[44px]"
             >
               <span>WhatsApp Us</span>
             </a>
@@ -106,9 +106,9 @@ export default function DoorDetail() {
       {/* ========================================================================= */}
       {/* 2. OVERVIEW                                                                */}
       {/* ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 items-start">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 items-start">
         <ScrollReveal direction="up" distance={20}>
-          <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm space-y-6">
+          <div className="bg-white rounded-3xl p-4 sm:p-10 border border-slate-200 shadow-sm space-y-6">
             <div className="border-b border-slate-100 pb-4">
               <span className="text-xs font-bold text-brand-teal uppercase tracking-widest block mb-1">
                 Door System Overview
@@ -228,26 +228,26 @@ export default function DoorDetail() {
       {/* Lightbox for Zooming Drawing */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200"
           onClick={() => setLightboxOpen(false)}
         >
           <div
-            className="relative bg-white rounded-3xl p-6 max-w-3xl w-full max-h-[90vh] flex flex-col items-center shadow-2xl border border-slate-700"
+            className="relative bg-white rounded-3xl p-4 sm:p-6 max-w-3xl w-full max-h-[92vh] sm:max-h-[90vh] flex flex-col items-center shadow-2xl border border-slate-700"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="w-full flex justify-between items-center pb-4 border-b border-slate-100">
-              <h3 className="text-base font-black text-slate-900">
+            <div className="w-full flex justify-between items-center pb-3 sm:pb-4 border-b border-slate-100 gap-2">
+              <h3 className="text-sm sm:text-base font-black text-slate-900 truncate">
                 {door.name} — Technical Drawing
               </h3>
               <button
                 onClick={() => setLightboxOpen(false)}
-                className="p-2 rounded-full hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors cursor-pointer"
+                className="w-10 h-10 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
                 aria-label="Close drawing preview"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="overflow-auto max-h-[72vh] w-full flex items-center justify-center p-4 bg-slate-50/60 rounded-2xl my-3">
+            <div className="overflow-auto max-h-[72vh] w-full flex items-center justify-center p-2 sm:p-4 bg-slate-50/60 rounded-2xl my-3">
               <img
                 src={door.image}
                 alt={`${door.name} Technical Drawing`}

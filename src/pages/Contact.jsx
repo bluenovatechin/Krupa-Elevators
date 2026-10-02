@@ -183,8 +183,9 @@ export default function Contact({ onOpenBrochure }) {
   return (
     <div className="min-h-screen bg-slate-50 pb-12">
       <Seo
-        title="Contact Us"
-        description="Contact Krupa Elevators for a free site survey, custom CAD layout, or elevator quotation. Manufacturing works in Kathwada, Ahmedabad."
+        title="Get Best Price Elevator Quote | Best Elevator Company in Ahmedabad"
+        description="Contact Krupa Elevators — rated #1 best elevator company in Ahmedabad. Request a free site survey, custom AutoCAD hoistway layout, or affordable elevator quotation direct from our Kathwada manufacturing plant."
+        keywords="best elevator company in Ahmedabad, elevator quotation Ahmedabad, affordable elevator solution, best price lift in Ahmedabad, elevator contact Kathwada GIDC"
       />
 
       {/* Page Hero */}
@@ -199,7 +200,8 @@ export default function Contact({ onOpenBrochure }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Facilities & Quick Contacts Cards */}
-        <div className="flex items-center justify-between gap-3 -mb-2">
+        <div className="space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-3">
           <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
             Facilities & Quick Contacts
           </span>
@@ -307,16 +309,17 @@ export default function Contact({ onOpenBrochure }) {
             </div>
           </ScrollReveal>
         </div>
+        </div>
 
         {/* INQUIRY FORM & SITE VISIT REQUEST */}
-        <ScrollReveal direction="up" distance={20} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-lg space-y-6">
+        <ScrollReveal direction="up" distance={20} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="lg:col-span-7 bg-white p-4 sm:p-6 lg:p-10 rounded-3xl border border-slate-200 shadow-lg space-y-6">
             <div className="border-b border-slate-100 pb-4">
               <span className="text-xs font-bold uppercase tracking-widest text-brand-teal block">
                 Direct Quotation
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
-                Request a Project Quote & Site Survey
+              <h2 className="text-xl sm:text-3xl font-black text-slate-900 mt-1">
+                Request a Project Quote &amp; Site Survey
               </h2>
               <p className="text-xs text-slate-500 mt-1">
                 Fill out the technical requirements below and our sales engineering division will provide a comprehensive proposal.
@@ -367,7 +370,7 @@ export default function Contact({ onOpenBrochure }) {
             )}
 
             {formSubmitted && submissionData ? (
-              <div className="p-6 sm:p-8 rounded-3xl bg-emerald-50/90 border border-emerald-200 text-emerald-950 text-center space-y-5 animate-in fade-in duration-300">
+              <div className="p-5 sm:p-8 rounded-3xl bg-emerald-50/90 border border-emerald-200 text-emerald-950 text-center space-y-5 animate-in fade-in duration-300">
                 <div className="w-16 h-16 rounded-2xl bg-[#25D366] text-white flex items-center justify-center mx-auto shadow-lg shadow-emerald-600/30">
                   <WhatsAppIcon className="w-9 h-9 text-white" />
                 </div>
@@ -376,7 +379,7 @@ export default function Contact({ onOpenBrochure }) {
                   <span className="text-[11px] font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100/90 px-3 py-1 rounded-full inline-block mb-2">
                     Inquiry Ref: {submissionData.ref}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
+                  <h3 className="text-xl sm:text-3xl font-black text-slate-900">
                     Inquiry Ready to Send to WhatsApp!
                   </h3>
                   <p className="text-xs text-slate-600 max-w-lg mx-auto leading-relaxed mt-2">
@@ -390,7 +393,7 @@ export default function Contact({ onOpenBrochure }) {
                     href={submissionData.targetUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center space-x-2 py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                    className="w-full flex items-center justify-center space-x-2 py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer min-h-[48px]"
                   >
                     <WhatsAppIcon className="w-5 h-5 text-white" />
                     <span>Open Chat in WhatsApp ({companyData.contacts.whatsapp})</span>
@@ -401,7 +404,7 @@ export default function Contact({ onOpenBrochure }) {
                 </div>
 
                 {/* Summary of what was sent */}
-                <div className="bg-white p-5 rounded-2xl border border-emerald-200/80 text-left text-xs text-slate-700 max-w-md mx-auto space-y-2 shadow-xs">
+                <div className="bg-white p-4 sm:p-5 rounded-2xl border border-emerald-200/80 text-left text-xs text-slate-700 max-w-md mx-auto space-y-2 shadow-xs">
                   <div className="font-bold text-slate-900 border-b border-slate-100 pb-2 mb-2 flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-800">
                       <CheckCircle2 className="w-4 h-4 text-[#25D366]" /> Form Details Transmitted
@@ -462,7 +465,7 @@ export default function Contact({ onOpenBrochure }) {
                       setFormSubmitted(false);
                       setSubmissionData(null);
                     }}
-                    className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl shadow-xs transition-colors cursor-pointer"
+                    className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl shadow-xs transition-colors cursor-pointer min-h-[44px]"
                   >
                     Send Another Request
                   </button>
@@ -470,7 +473,7 @@ export default function Contact({ onOpenBrochure }) {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Your Name *
@@ -481,7 +484,7 @@ export default function Contact({ onOpenBrochure }) {
                       placeholder="e.g. Mukesh Shah"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                      className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs min-h-[44px] focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                     />
                   </div>
                   <div>
@@ -494,12 +497,12 @@ export default function Contact({ onOpenBrochure }) {
                       placeholder="+91 98250 XXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                      className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs min-h-[44px] focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Email Address
@@ -509,7 +512,7 @@ export default function Contact({ onOpenBrochure }) {
                       placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                      className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs min-h-[44px] focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                     />
                   </div>
                   <div>
@@ -518,15 +521,15 @@ export default function Contact({ onOpenBrochure }) {
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. Ahmedabad, Surat, Rajkot, Vadodara"
+                      placeholder="e.g. Ahmedabad, Surat, Rajkot"
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                      className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs min-h-[44px] focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Building Category
@@ -534,7 +537,7 @@ export default function Contact({ onOpenBrochure }) {
                     <select
                       value={formData.buildingType}
                       onChange={(e) => setFormData({ ...formData, buildingType: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                      className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs min-h-[44px] focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                     >
                       <option>Residential Apartment</option>
                       <option>Commercial Office Tower</option>
@@ -552,7 +555,7 @@ export default function Contact({ onOpenBrochure }) {
                     <select
                       value={formData.floors}
                       onChange={(e) => setFormData({ ...formData, floors: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                      className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs min-h-[44px] focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                     >
                       <option>G+1 to G+3 (Low Rise / Villa)</option>
                       <option>4 to 7 Floors</option>
@@ -562,7 +565,7 @@ export default function Contact({ onOpenBrochure }) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Rated Passenger Capacity
@@ -570,7 +573,7 @@ export default function Contact({ onOpenBrochure }) {
                     <select
                       value={formData.capacity}
                       onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                      className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs min-h-[44px] focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                     >
                       <option>3 to 4 Passengers (204 - 272 kg)</option>
                       <option>5 to 6 Passengers (340 - 408 kg)</option>
@@ -587,7 +590,7 @@ export default function Contact({ onOpenBrochure }) {
                     <select
                       value={formData.doorType}
                       onChange={(e) => setFormData({ ...formData, doorType: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                      className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs min-h-[44px] focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                     >
                       <option>Automatic Center Opening</option>
                       <option>Automatic Telescopic Door</option>
@@ -608,13 +611,13 @@ export default function Contact({ onOpenBrochure }) {
                     placeholder="Shaft dimensions (if existing), preferred cabin finish (e.g. KEC-03, Rose Gold), timeline..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-teal"
+                    className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-sm sm:text-xs focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all bg-white"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-bold shadow-lg shadow-emerald-900/20 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center space-x-2 cursor-pointer"
+                  className="w-full py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-bold shadow-lg shadow-emerald-900/20 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center space-x-2 cursor-pointer min-h-[48px]"
                 >
                   <WhatsAppIcon className="w-5 h-5 text-white" />
                   <Send className="w-4 h-4 text-emerald-100" />

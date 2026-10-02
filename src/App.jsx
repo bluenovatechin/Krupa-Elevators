@@ -37,22 +37,47 @@ function ScrollToTop() {
 
   useEffect(() => {
     if (hash) {
-      const targetId = hash.replace("#", "");
-      // Timeout allows async DOM render and image layout calculation
-      const timer = setTimeout(() => {
+      const targetId = decodeURIComponent(hash.slice(1));
+      // Where the section should sit: just below the sticky navbar.
+      const targetTop = () => {
         const element = document.getElementById(targetId);
-        if (element) {
-          const topOffset = 85; // Fixed navbar height offset
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - topOffset;
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
-        }
-      }, 120);
-      return () => clearTimeout(timer);
+        if (!element) return null;
+        const navHeight = document.querySelector("header")?.offsetHeight ?? 64;
+        return element.getBoundingClientRect().top + window.scrollY - navHeight - 12;
+      };
+
+      // Images above the section can finish loading after the first scroll and push it
+      // down, so re-check a few times and correct — unless the visitor starts scrolling.
+      let userScrolled = false;
+      const stop = () => { userScrolled = true; };
+      const opts = { passive: true };
+      window.addEventListener("wheel", stop, opts);
+      window.addEventListener("touchstart", stop, opts);
+      window.addEventListener("keydown", stop);
+
+      // Correct only when the section itself has moved (layout shift) — not merely because
+      // the first smooth scroll is still on its way there.
+      let aimedAt = null;
+      const timers = [120, 600, 1200, 2000].map((delay) =>
+        setTimeout(() => {
+          if (userScrolled) return;
+          const top = targetTop();
+          if (top === null) return;
+          if (aimedAt === null || Math.abs(top - aimedAt) > 8) {
+            window.scrollTo({ top, behavior: "smooth" });
+            aimedAt = top;
+          }
+        }, delay)
+      );
+      return () => {
+        timers.forEach(clearTimeout);
+        window.removeEventListener("wheel", stop, opts);
+        window.removeEventListener("touchstart", stop, opts);
+        window.removeEventListener("keydown", stop);
+      };
     } else {
+      // New page: jump to the top instantly while the page fades in, rather than
+      // visibly scrolling up through the previous page.
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [pathname, hash]);
@@ -67,6 +92,18 @@ function ScrollToTop() {
   }, []);
 
   return null;
+}
+
+// Fades each new page in. Keyed on the path only, so filter (?type=) and in-page
+// (#section) changes update instantly without replaying the animation.
+function PageTransition({ children }) {
+  const { pathname, hash } = useLocation();
+  // Links to a section (#id) scroll there instead — that movement is the transition.
+  return (
+    <div key={pathname} className={hash ? undefined : "page-transition"}>
+      {children}
+    </div>
+  );
 }
 
 export default function App() {
@@ -85,6 +122,7 @@ export default function App() {
         <Navbar onOpenBrochure={() => handleOpenBrochure(1)} />
 
         <main className="flex-1">
+          <PageTransition>
           <Routes>
             {/* 1. Home */}
             <Route
@@ -184,6 +222,7 @@ export default function App() {
               }
             />
           </Routes>
+          </PageTransition>
         </main>
 
         <Footer onOpenBrochure={() => handleOpenBrochure(1)} />
@@ -195,8 +234,8 @@ export default function App() {
           onClose={() => setBrochureModalOpen(false)}
         />
 
-        {/* Fixed Quick Action Call & WhatsApp Dock */}
-        <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
+        {/* Floating Call & WhatsApp buttons — all screen sizes */}
+        <div className="flex fixed bottom-4 right-4 sm:bottom-6 sm:right-6 mb-[env(safe-area-inset-bottom)] z-40 flex-col items-end space-y-3">
           {/* Quick Call Button */}
           <a
             href="tel:+919727764868"

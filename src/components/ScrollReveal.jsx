@@ -41,8 +41,13 @@ export default function ScrollReveal({
         }
       },
       {
-        threshold,
-        rootMargin: "0px 0px -30px 0px", // triggers slightly before center
+        // Trigger on the first visible pixel: a ratio threshold makes tall elements (common
+        // on phones, where cards stack) wait until a large part is on screen, leaving gaps.
+        threshold: 0,
+        // The detection area extends far above the screen, so anything already scrolled
+        // past — e.g. after jumping to a #section — counts as seen and is shown, instead
+        // of staying invisible because it never "entered" the viewport.
+        rootMargin: "100000px 0px -40px 0px",
       }
     );
 

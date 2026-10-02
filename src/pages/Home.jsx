@@ -10,9 +10,15 @@ import {
   Activity,
   Cpu,
   MapPin,
+  Tag,
+  Factory,
+  Award,
+  HelpCircle,
+  IndianRupee
 } from "lucide-react";
 import { companyData, trustedSolutionSection } from "../data/companyData";
 import { elevatorMaster } from "../data/elevatorMaster";
+import { ahmedabadElevatorFaqs } from "../data/elevatorSeoData";
 import ScrollReveal from "../components/ScrollReveal";
 import { assetUrl } from "../utils/assetPath";
 import Seo from "../components/common/Seo";
@@ -84,11 +90,88 @@ export default function Home({ onOpenBrochure }) {
     return () => clearInterval(timer);
   }, []);
 
+  // Enterprise Schema for LocalBusiness, ManufacturingPlant & FAQPage (Google Rich Snippets)
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "ManufacturingBusiness"],
+        "@id": "https://www.krupaelevators.com/#localbusiness",
+        name: "KRUPA ELEVATORS",
+        alternateName: [
+          "Krupa Elevators Ahmedabad",
+          "Best Elevator Company in Ahmedabad",
+          "Krupa Elevator Manufacturing Plant Kathwada"
+        ],
+        description:
+          "KRUPA ELEVATORS is the #1 best elevator company and premier manufacturing plant in Ahmedabad, Gujarat. Direct manufacturer of affordable passenger, home villa, capsule, hospital, goods, car, MRL, and hydraulic elevators with factory-direct best price guarantee and 100% monopoly-free AMC.",
+        url: "https://www.krupaelevators.com/",
+        telephone: "+918200859171",
+        email: "info@krupaelevators.com",
+        priceRange: "₹₹ (Affordable Direct Factory Best Price)",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress:
+            "1, Heritage Industrial Hub, Nr. Global Industrial Estate, Nr. Kotak Mahindra Bank, Kathwada GIDC Road No 5",
+          addressLocality: "Ahmedabad",
+          addressRegion: "Gujarat",
+          postalCode: "382430",
+          addressCountry: "IN"
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 23.0338,
+          longitude: 72.6738
+        },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          opens: "09:00",
+          closes: "20:00"
+        },
+        areaServed: [
+          "Ahmedabad",
+          "Gandhinagar",
+          "Vadodara",
+          "Surat",
+          "Rajkot",
+          "Gujarat",
+          "India"
+        ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          reviewCount: "142"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: ahmedabadElevatorFaqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.a
+          }
+        }))
+      }
+    ]
+  };
+
   return (
     <div className="space-y-16 sm:space-y-24 pb-20 overflow-x-hidden">
       <Seo
-        title="Krupa Elevators — Reliable Riding Experience"
-        description="KRUPA ELEVATORS designs and manufactures passenger, capsule, hospital, goods, car, MRL, home and hydraulic elevators in Ahmedabad, Gujarat."
+        title="Best Elevator Company in Ahmedabad | Top Manufacturing Plant & Affordable Lifts"
+        description="KRUPA ELEVATORS is the #1 best elevator company and premier manufacturing plant in Ahmedabad, Gujarat. Direct manufacturer of affordable passenger, home villa, capsule, hospital, goods, car, MRL and hydraulic elevators with factory-direct best price guarantee and 100% monopoly-free AMC."
+        keywords="best elevator company in Ahmedabad, best manufacturing plant, affordable elevator solution, best price lift in Ahmedabad, elevator manufacturers in Ahmedabad, passenger elevator Ahmedabad best price, home lift Ahmedabad affordable, capsule elevator Gujarat, goods lift Kathwada GIDC, MRL elevator manufacturer, elevator AMC Ahmedabad"
+        schema={homeSchema}
       />
 
       {/* ========================================================================= */}
@@ -96,7 +179,7 @@ export default function Home({ onOpenBrochure }) {
       {/* ========================================================================= */}
       <section
         id="hero"
-        className="relative w-full h-[calc(100vh-64px)] min-h-[580px] max-h-[820px] bg-slate-950 overflow-hidden flex items-center"
+        className="relative w-full h-[calc(100vh-56px)] sm:h-[calc(100vh-60px)] min-h-[520px] sm:min-h-[580px] max-h-[850px] bg-slate-950 overflow-hidden flex items-center"
       >
 
         {/* ── Full-layer crossfade slides ────────────────────────────────────────
@@ -127,35 +210,40 @@ export default function Home({ onOpenBrochure }) {
               <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/45" />
 
               {/* Foreground text content — sits on top of the gradient */}
-              <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8">
-                <div className="max-w-[50rem] space-y-5">
+              <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-6 sm:py-8">
+                <div className="max-w-[50rem] space-y-4 sm:space-y-5">
 
-                  {/* Category tag */}
-                  <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 border border-brand-teal/40 text-brand-teal text-xs font-bold uppercase tracking-wider backdrop-blur-md">
-                    <Sparkles className="w-3.5 h-3.5 text-brand-orange flex-shrink-0" />
-                    <span>{scene.tag}</span>
+                  {/* Category tag & Rank #1 Trust Badge */}
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-brand-teal/20 border border-brand-teal/40 text-brand-teal text-[11px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+                      <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-brand-orange flex-shrink-0" />
+                      <span>{scene.tag}</span>
+                    </div>
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-300 text-[10px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+                      #1 Best Elevator Company in Ahmedabad
+                    </span>
                   </div>
 
                   {/* Title + subtitle */}
-                  <div className="space-y-3">
-                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+                  <div className="space-y-2 sm:space-y-3">
+                    <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
                       {scene.title}
                     </h1>
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
-                      {scene.subtitle}
+                    <p className="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                      {scene.subtitle}. Engineered at our Kathwada GIDC manufacturing works in Ahmedabad with direct factory best price guarantee.
                     </p>
                   </div>
 
                   {/* Company info badges */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {[
-                      { icon: ShieldCheck, text: "100% Monopoly-Free — No Lock-In",    color: "text-brand-orange" },
-                      { icon: Zap,         text: "Up to 30% Energy Savings",            color: "text-brand-teal"   },
-                      { icon: MapPin,      text: "Ahmedabad, Gujarat — Direct Factory", color: "text-brand-orange" },
+                      { icon: ShieldCheck, text: "100% Monopoly-Free — No Lock-In", color: "text-brand-orange" },
+                      { icon: Zap, text: "Up to 30% Energy Savings", color: "text-brand-teal" },
+                      { icon: MapPin, text: "Ahmedabad — Direct Factory", color: "text-brand-orange" },
                     ].map(({ icon: Icon, text, color }) => (
                       <span
                         key={text}
-                        className={`inline-flex items-center gap-1.5 text-xs font-semibold ${color} bg-slate-950/50 backdrop-blur-sm border border-white/10 px-3 py-1.5 rounded-full`}
+                        className={`inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold ${color} bg-slate-950/60 backdrop-blur-sm border border-white/10 px-2.5 py-1 rounded-full`}
                       >
                         <Icon className="w-3.5 h-3.5 flex-shrink-0" />
                         {text}
@@ -164,10 +252,10 @@ export default function Home({ onOpenBrochure }) {
                   </div>
 
                   {/* CTAs */}
-                  <div className="pt-1 flex flex-wrap items-center gap-3">
+                  <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                     <Link
                       to="/products/elevators"
-                      className="px-6 py-3.5 rounded-xl bg-brand-teal hover:bg-teal-600 text-white text-xs sm:text-sm font-bold shadow-lg shadow-brand-teal/25 hover:shadow-brand-teal/40 transition-all flex items-center space-x-2 group"
+                      className="w-full sm:w-auto justify-center px-5 py-3 rounded-xl bg-brand-teal hover:bg-teal-600 text-white text-xs sm:text-sm font-bold shadow-lg shadow-brand-teal/25 hover:shadow-brand-teal/40 transition-all flex items-center space-x-2 group text-center"
                     >
                       <span>Explore Elevators</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -176,24 +264,24 @@ export default function Home({ onOpenBrochure }) {
                       onClick={() => {
                         document.getElementById("cta-section")?.scrollIntoView({ behavior: "smooth" });
                       }}
-                      className="px-6 py-3.5 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-lg shadow-brand-orange/20 transition-all flex items-center space-x-2 cursor-pointer"
+                      className="w-full sm:w-auto justify-center px-5 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white text-xs sm:text-sm font-bold shadow-lg shadow-brand-orange/20 transition-all flex items-center space-x-2 cursor-pointer text-center"
                     >
                       <span>Submit Query / Get Quote</span>
                     </button>
                   </div>
 
                   {/* Trust strip */}
-                  <div className="pt-2 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-400 font-medium">
+                  <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-y-1.5 gap-x-4 sm:gap-x-6 text-[11px] sm:text-xs text-slate-400 font-medium">
                     <div className="flex items-center space-x-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-                      <span>Direct Kathwada Manufacturing</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-teal shrink-0" />
+                      <span>Direct Kathwada Plant</span>
                     </div>
                     <div className="flex items-center space-x-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-brand-orange shrink-0" />
-                      <span>24/7 Breakdown Assistance</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-orange shrink-0" />
+                      <span>24/7 Breakdown Service</span>
                     </div>
                     <div className="flex items-center space-x-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-teal shrink-0" />
                       <span>Turnkey Installation</span>
                     </div>
                   </div>
@@ -213,20 +301,23 @@ export default function Home({ onOpenBrochure }) {
           />
         </div>
 
-        {/* ── Navigation dots ──────────────────────────────────────────────────── */}
-        <div className="absolute bottom-4 left-0 right-0 z-30 flex justify-center items-center space-x-2">
+        {/* ── Navigation dots (with touch-friendly tap targets) ────────────────── */}
+        <div className="absolute bottom-3 left-0 right-0 z-30 flex justify-center items-center space-x-1">
           {heroScenes.map((scene, idx) => (
             <button
               key={scene.id}
               onClick={() => setCurrentHeroIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                idx === currentHeroIndex
-                  ? "w-8 bg-brand-teal"
-                  : "w-2 bg-white/30 hover:bg-white/60"
-              }`}
+              className="p-2 transition-all cursor-pointer focus:outline-none"
               title={scene.title}
               aria-label={`Go to ${scene.title}`}
-            />
+            >
+              <span
+                className={`block h-2 rounded-full transition-all duration-300 ${idx === currentHeroIndex
+                  ? "w-7 bg-brand-teal shadow-xs"
+                  : "w-2 bg-white/40 hover:bg-white/70"
+                  }`}
+              />
+            </button>
           ))}
         </div>
       </section>
@@ -286,9 +377,9 @@ export default function Home({ onOpenBrochure }) {
         </div>
 
         {/* Compact 4-Pillar Strip */}
-        <div className="border-t border-b border-slate-200 divide-y md:divide-y-0 md:divide-x divide-slate-200 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-4">
+        <div className="border-t border-b border-slate-200 divide-y md:divide-y-0 md:divide-x divide-slate-200 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 py-1.5">
           {companyData.pillars.map((pillar, idx) => (
-            <div key={pillar.title} className="p-5 lg:p-6 space-y-2 group transition-all duration-300 hover:bg-slate-50/60">
+            <div key={pillar.title} className="p-3 lg:p-6 space-y-2 group transition-all duration-300 hover:bg-slate-50/60">
               <span className="font-mono text-[10px] font-bold text-slate-400 group-hover:text-brand-teal transition-colors">
                 0{idx + 1}
               </span>
@@ -300,6 +391,80 @@ export default function Home({ onOpenBrochure }) {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 2B. AHMEDABAD MARKET LEADERSHIP & BEST MANUFACTURING PLANT                */}
+      {/* ========================================================================= */}
+      <section id="ahmedabad-authority" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
+        <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-teal-950 text-white p-8 sm:p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-teal/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 space-y-8">
+            <div className="max-w-3xl space-y-3">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-orange/20 border border-brand-orange/40 text-brand-orange text-xs font-bold uppercase tracking-wider">
+                <Award className="w-4 h-4 shrink-0" />
+                <span>Ranked #1 Elevator Company in Ahmedabad, Gujarat</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+                Gujarat's Premier Elevator Manufacturing Plant &amp; Affordable Solutions
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Headquartered in <strong>Kathwada GIDC, Ahmedabad</strong> (1, Heritage Industrial Hub), KRUPA ELEVATORS combines European engineering precision with transparent direct factory pricing. We eliminate distributor markups and third-party trader margins, delivering the <strong>most affordable elevator solutions at guaranteed best prices</strong> across Ahmedabad, Gandhinagar, Vadodara, and throughout India.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
+              <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2 hover:bg-white/10 transition-colors">
+                <Factory className="w-6 h-6 text-brand-orange" />
+                <h3 className="text-base font-bold text-white">Kathwada Plant</h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  In-house CNC fiber laser cutting, precision bending, and 100% component bench testing before dispatch.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2 hover:bg-white/10 transition-colors">
+                <Tag className="w-6 h-6 text-brand-teal" />
+                <h3 className="text-base font-bold text-white">Best Price Guarantee</h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Direct manufacturer rates save 20% to 30% upfront. High-efficiency PMS gearless drives save up to 40% power.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2 hover:bg-white/10 transition-colors">
+                <ShieldCheck className="w-6 h-6 text-brand-orange" />
+                <h3 className="text-base font-bold text-white">100% Monopoly-Free</h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Open-protocol non-proprietary controllers. Zero locked service passwords, saving ₹25k–₹50k yearly on AMC.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2 hover:bg-white/10 transition-colors">
+                <MapPin className="w-6 h-6 text-brand-teal" />
+                <h3 className="text-base font-bold text-white">30-Min Rapid Service</h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Dedicated 24/7 technical breakdown response teams on ground across Ahmedabad, Gandhinagar, and Sanand.
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <Link
+                to="/products/elevators"
+                className="px-6 py-3 rounded-xl bg-brand-teal hover:bg-teal-600 text-white text-xs sm:text-sm font-bold shadow-lg transition-all flex items-center space-x-2"
+              >
+                <span>Browse All 8 Elevator Models with Prices</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold border border-white/20 transition-all"
+              >
+                Request Free Hoistway AutoCAD Drawing
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -337,7 +502,8 @@ export default function Home({ onOpenBrochure }) {
               tag: "Residential & Commercial",
               desc: "Smooth, silent, and energy-efficient vertical mobility tailored for apartments, offices, and hotels.",
               image: elevatorMaster.find((e) => e.id === "passenger")?.image || "/assets/elevators/passenger_elevator.jpg",
-              highlight: "Whisper-quiet ride & smooth leveling"
+              highlight: "Whisper-quiet ride & smooth leveling",
+              price: elevatorMaster.find((e) => e.id === "passenger")?.pricing?.priceRange || "From ₹3,75,000*"
             },
             {
               id: "capsule",
@@ -345,7 +511,8 @@ export default function Home({ onOpenBrochure }) {
               tag: "Architectural Landmark",
               desc: "Futuristic curved glass panoramic cabins offering 360-degree views in atriums, malls, and luxury resorts.",
               image: elevatorMaster.find((e) => e.id === "capsule")?.image || "/assets/elevators/capsule_elevator.jpg",
-              highlight: "Panoramic 360° glass aesthetics"
+              highlight: "Panoramic 360° glass aesthetics",
+              price: elevatorMaster.find((e) => e.id === "capsule")?.pricing?.priceRange || "From ₹6,50,000*"
             },
             {
               id: "hospital",
@@ -353,7 +520,8 @@ export default function Home({ onOpenBrochure }) {
               tag: "Medical & Stretcher",
               desc: "Spacious cabins with antibacterial wall protection, wide doors, and emergency medical priority features.",
               image: elevatorMaster.find((e) => e.id === "hospital")?.image || "/assets/elevators/hospital_elevator.jpg",
-              highlight: "Extra-deep cabins & jerk-free transit"
+              highlight: "Extra-deep cabins & jerk-free transit",
+              price: elevatorMaster.find((e) => e.id === "hospital")?.pricing?.priceRange || "From ₹5,50,000*"
             },
             {
               id: "goods",
@@ -361,7 +529,8 @@ export default function Home({ onOpenBrochure }) {
               tag: "Industrial Logistics",
               desc: "Rugged structural steel cabins built to handle heavy cargo, forklift loading, and industrial logistics.",
               image: elevatorMaster.find((e) => e.id === "goods")?.image || "/assets/elevators/goods_elevator.jpg",
-              highlight: "Heavy payload up to 5000 kg"
+              highlight: "Heavy payload up to 5000 kg",
+              price: elevatorMaster.find((e) => e.id === "goods")?.pricing?.priceRange || "From ₹4,25,000*"
             }
           ].map((item, idx) => (
             <ScrollReveal
@@ -383,18 +552,30 @@ export default function Home({ onOpenBrochure }) {
                     <div className="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-bold text-teal-300 border border-slate-700">
                       {item.tag}
                     </div>
+                    <div className="absolute top-3 right-3 bg-brand-orange/90 backdrop-blur-md px-2 py-0.5 rounded-md text-[9px] font-black text-white uppercase tracking-wider">
+                      Best Price
+                    </div>
                     <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold drop-shadow-sm">
                       {item.highlight}
                     </div>
                   </div>
 
-                  <div className="p-5 space-y-2">
-                    <h3 className="text-base font-black text-slate-900 group-hover:text-brand-teal transition-colors">
-                      {item.name}
-                    </h3>
+                  <div className="p-5 space-y-2.5">
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-teal block">
+                        Affordable Solution
+                      </span>
+                      <h3 className="text-base font-black text-slate-900 group-hover:text-brand-teal transition-colors">
+                        {item.name}
+                      </h3>
+                    </div>
                     <p className="text-xs text-slate-600 leading-relaxed">
                       {item.desc}
                     </p>
+                    <div className="pt-2 flex items-center justify-between text-xs font-bold text-slate-700 border-t border-slate-100">
+                      <span className="text-slate-500 font-normal">Factory Estimate:</span>
+                      <span className="text-brand-teal">{item.price}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -643,6 +824,58 @@ export default function Home({ onOpenBrochure }) {
       {/* ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <LiftEstimatorWizard onOpenBrochure={onOpenBrochure} />
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 8B. FREQUENTLY ASKED QUESTIONS — ELEVATOR PRICES & COMPANY IN AHMEDABAD   */}
+      {/* ========================================================================= */}
+      <section id="home-faq" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
+        <div className="border-b border-slate-200 pb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-1 max-w-2xl">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-brand-teal flex items-center gap-1.5">
+              <HelpCircle className="w-4 h-4" />
+              Frequently Asked Questions
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Elevator Prices &amp; Manufacturing in Ahmedabad
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Clear answers to the most common queries regarding elevator costs, installation timelines, and local manufacturing in Gujarat.
+            </p>
+          </div>
+          <Link
+            to="/contact"
+            className="text-xs sm:text-sm font-bold text-brand-teal hover:text-teal-700 flex items-center space-x-1 shrink-0"
+          >
+            <span>Have a technical question? Ask our engineers</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {ahmedabadElevatorFaqs.map((faq, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs hover:border-brand-teal/50 hover:shadow-lg transition-all flex flex-col justify-between"
+            >
+              <div className="space-y-3">
+                <h3 className="text-base font-black text-slate-900 flex items-start gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-teal-50 text-brand-teal text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    {idx + 1}
+                  </span>
+                  <span>{faq.q}</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+                  {faq.a}
+                </p>
+              </div>
+              <div className="pl-8 pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <span>KRUPA ELEVATORS AHMEDABAD</span>
+                <span className="text-brand-teal font-semibold">Verified FAQ</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ========================================================================= */}

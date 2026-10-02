@@ -135,8 +135,9 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
   return (
     <div className="min-h-screen bg-slate-50 pb-16">
       <Seo
-        title="Architects & CAD Hub"
-        description="Civil shaft dimensions, CAD drawings, and engineering legends for every Krupa elevator class, compiled for architects and structural engineers planning a hoistway."
+        title="Elevator Civil Drawings & AutoCAD GA Layouts in Ahmedabad | Krupa Elevators"
+        description="AutoCAD hoistway layouts, civil dimension tables, and structural load charts for architects and civil engineers in Ahmedabad and Gujarat by Krupa Elevators."
+        keywords="elevator civil drawings, lift shaft AutoCAD DWG Ahmedabad, hoistway dimension matrix, elevator architect guide Gujarat"
       />
 
       <PageHero
@@ -184,7 +185,8 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
             <span className="text-xs text-slate-500 font-mono">8 Standard Classes</span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
+          {/* Model Tabs Selector: Swipeable on mobile, Grid on desktop */}
+          <div className="flex sm:grid sm:grid-cols-4 lg:grid-cols-8 overflow-x-auto no-scrollbar gap-2 sm:gap-2.5 pb-1 touch-pan-x -mx-4 px-4 sm:mx-0 sm:px-0">
             {ARCHITECT_MODELS.map((model) => {
               const isSelected = model.id === selectedModelId;
               return (
@@ -194,7 +196,7 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
                     setSelectedModelId(model.id);
                     setFilterDoorSystem("all");
                   }}
-                  className={`p-3 rounded-2xl text-left border transition-all flex flex-col justify-between cursor-pointer ${
+                  className={`p-3 rounded-2xl text-left border transition-all flex flex-col justify-between cursor-pointer shrink-0 min-w-[130px] sm:min-w-0 active:scale-95 ${
                     isSelected
                       ? "bg-slate-900 border-brand-teal text-white shadow-md ring-1 ring-brand-teal"
                       : "bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-100/50"
@@ -213,18 +215,18 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
         </div>
 
         {/* Two-Column Workspace: Left Drawing Preview (5 cols), Right Specifications (7 cols) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
           {/* Left: Technical Drawing Sheet (5 cols) */}
-          <div className="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 shadow-sm p-5 space-y-4 sticky top-24">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div className="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 shadow-sm p-4 sm:p-5 space-y-4 relative lg:sticky lg:top-24">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div>
                 <h3 className="text-sm font-bold text-slate-900">{currentModel.name}</h3>
                 <span className="text-xs text-slate-500 font-mono">General Arrangement Drawing</span>
               </div>
               
               {/* Drawing View Switcher */}
-              <div className="flex bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+              <div className="flex self-start sm:self-auto bg-slate-100 p-1 rounded-xl text-xs font-semibold whitespace-nowrap">
                 <button
                   onClick={() => setActiveDrawingView("ga")}
                   className={`px-2.5 py-1 rounded-lg transition-all ${
@@ -276,11 +278,11 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
                 <span className="font-bold text-slate-700 uppercase tracking-wider text-[10px] block mb-1">
                   Architectural Legend (mm)
                 </span>
-                <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-slate-600">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1 text-slate-600">
                   {Object.entries(tableData.legend).map(([key, val]) => (
                     <div key={key} className="flex items-baseline space-x-1">
                       <span className="font-mono font-bold text-brand-orange">{key}:</span>
-                      <span className="truncate" title={val}>{val}</span>
+                      <span title={val}>{val}</span>
                     </div>
                   ))}
                 </div>
@@ -433,7 +435,7 @@ export default function ArchitectsCorner({ onOpenBrochurePage }) {
 
       {/* High-Resolution Schematic Lightbox Modal */}
       {zoomModalImage && (
-        <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
           <div className="relative bg-slate-900 border border-slate-700 rounded-3xl p-4 sm:p-6 max-w-5xl w-full max-h-[90vh] flex flex-col justify-between overflow-hidden shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-white">
               <span className="font-bold text-sm">{currentModel.name} — High-Resolution Schematic</span>

@@ -67,8 +67,9 @@ export default function Services() {
 
   return (<>
     <Seo
-      title="Services & Maintenance"
-      description="Professional elevator installation support, AMC maintenance contracts, modernization, and 24/7 emergency breakdown support from Krupa Elevators."
+      title="Elevator Installation & AMC Services in Ahmedabad | Krupa Elevators"
+      description="Professional elevator installation, 100% monopoly-free AMC maintenance, modernization, and 24/7 emergency support across Ahmedabad and Gujarat from Krupa Elevators."
+      keywords="elevator installation Ahmedabad, elevator AMC service, lift modernization Gujarat, elevator repair Ahmedabad, best elevator company in Ahmedabad"
     />
     <div className="min-h-screen bg-slate-50 pb-12 overflow-x-hidden">
       {/* Page Hero */}
@@ -214,25 +215,25 @@ export default function Services() {
           </div>
 
           {/* Compact emergency strip */}
-          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl text-white relative overflow-hidden">
+          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 rounded-3xl p-5 sm:p-8 border border-slate-800 shadow-xl text-white relative overflow-hidden">
             <div className="absolute -right-10 -bottom-10 w-56 h-56 bg-brand-orange/15 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-col xs:flex-row items-start xs:items-center gap-3">
                 <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider shrink-0">
                   <AlertTriangle className="w-3.5 h-3.5" />
                   <span>24/7 Dispatch</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-300">
+                <div className="text-xs sm:text-sm text-slate-300">
                   <span className="flex items-center gap-1.5 font-mono text-slate-400 mb-0.5">
-                    <Clock className="w-3.5 h-3.5 text-brand-orange" />
+                    <Clock className="w-3.5 h-3.5 text-brand-orange shrink-0" />
                     30–45 minute emergency response guarantee
                   </span>
-                  Breakdown? Get immediate help across Ahmedabad, Gandhinagar & Sanand/Bavla.
-                </p>
+                  <span>Breakdown? Get immediate help across Ahmedabad, Gandhinagar &amp; Sanand/Bavla.</span>
+                </div>
               </div>
               <Link
                 to="/services/emergency-support"
-                className="inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all shrink-0"
+                className="inline-flex items-center justify-center space-x-2 px-6 py-3 min-h-[44px] rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all shrink-0 w-full sm:w-auto"
               >
                 <span>Emergency Support</span>
                 <ArrowRight className="w-4 h-4" />
@@ -242,7 +243,7 @@ export default function Services() {
         </div>
       </div>
     </div>
-    <CTASection
+    <CTASection contained
       title="Schedule an On-Site Maintenance & Safety Audit"
       subtitle="Our technical supervisors inspect your elevator hoist ropes, brake holding torque, leveling switches, and controller logs to ensure 100% statutory compliance."
       variant="gradient"

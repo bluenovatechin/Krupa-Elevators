@@ -12,16 +12,81 @@
   }
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
   body {
     @apply bg-slate-50 text-slate-900 selection:bg-brand-teal selection:text-white;
     font-family: var(--font-body);
     text-rendering: optimizeLegibility;
+    overflow-x: clip;
+    width: 100%;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: var(--heading-tracking);
   }
+  /* Prevent iOS zoom on input focus while keeping modern styling */
+  @media screen and (max-width: 640px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+  }
+  button, a {
+    touch-action: manipulation;
+  }
+}
+
+/* Page transition — new pages fade in with a slight rise (see PageTransition in App.jsx) */
+.page-transition {
+  animation: page-in 320ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+}
+
+/* Enter animations for menus & dropdowns — the `animate-in fade-in slide-in-from-top-* zoom-in-*`
+   classes used in Navbar etc. (no tailwindcss-animate plugin is installed, so they are defined here). */
+.animate-in {
+  animation: enter 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.fade-in { --enter-opacity: 0; }
+.zoom-in-95 { --enter-scale: 0.95; }
+.slide-in-from-top-1 { --enter-y: -0.25rem; }
+.slide-in-from-top-1\.5 { --enter-y: -0.375rem; }
+.slide-in-from-top-3 { --enter-y: -0.75rem; }
+@keyframes enter {
+  from {
+    opacity: var(--enter-opacity, 1);
+    transform: translate3d(0, var(--enter-y, 0), 0) scale(var(--enter-scale, 1));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    animation: none;
+  }
+}
+
+/* Mobile Safe Area Inset Helpers */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+.bottom-safe {
+  bottom: env(safe-area-inset-bottom, 0px);
 }
 
 ::-webkit-scrollbar {

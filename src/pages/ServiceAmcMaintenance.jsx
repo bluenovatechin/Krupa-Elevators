@@ -28,8 +28,9 @@ export default function ServiceAmcMaintenance() {
   return (
     <>
       <Seo
-        title="AMC & Maintenance Contracts"
-        description="Annual Maintenance Contract packages and the five core service pillars behind Krupa Elevators' lifecycle support — certified technicians, supervisors, genuine spare parts, preventive maintenance, and 24-hour IoT monitoring."
+        title="Elevator AMC & Maintenance in Ahmedabad | 100% Monopoly-Free"
+        description="Affordable elevator AMC packages in Ahmedabad with 100% monopoly-free non-proprietary controllers. Zero locked passwords, certified technicians, 24/7 breakdown support, and genuine spares in Gujarat."
+        keywords="elevator AMC in Ahmedabad, lift maintenance Ahmedabad, affordable elevator AMC, monopoly free elevator maintenance, lift repair Kathwada GIDC"
       />
       <div className="min-h-screen bg-slate-50 pb-12 overflow-x-hidden">
         <PageHero
@@ -151,7 +152,7 @@ export default function ServiceAmcMaintenance() {
                 <div
                   key={pkg.id}
                   className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between border transition-all ${pkg.popular
-                    ? "bg-slate-900 text-white border-brand-teal shadow-xl scale-[1.02]"
+                    ? "bg-slate-900 text-white border-brand-teal shadow-xl md:scale-[1.02]"
                     : "bg-white text-slate-900 border-slate-200 shadow-xs"
                     }`}
                 >
@@ -194,7 +195,7 @@ export default function ServiceAmcMaintenance() {
                   <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
                     <Link
                       to="/contact"
-                      className={`w-full py-3 rounded-xl text-xs font-bold text-center block transition-colors ${pkg.popular
+                      className={`w-full py-3.5 min-h-[44px] rounded-xl text-xs font-bold text-center flex items-center justify-center transition-colors ${pkg.popular
                         ? "bg-brand-orange hover:bg-brand-orange-hover text-white shadow-md"
                         : "bg-slate-900 hover:bg-brand-teal text-white"
                         }`}
@@ -209,7 +210,7 @@ export default function ServiceAmcMaintenance() {
         </div>
       </div>
 
-      <CTASection
+      <CTASection contained
         title="Schedule an On-Site Maintenance & Safety Audit"
         subtitle="Our technical supervisors inspect your elevator hoist ropes, brake holding torque, leveling switches, and controller logs to ensure 100% statutory compliance."
         variant="gradient"

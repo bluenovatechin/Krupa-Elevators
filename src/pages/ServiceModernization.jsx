@@ -56,7 +56,7 @@ export default function ServiceModernization() {
         </div>
       </div>
 
-      <CTASection
+      <CTASection contained
         title="Ready to Modernize Your Building's Elevator?"
         subtitle="Our engineers assess your existing shaft, controller, and drive system to recommend the right modernization scope — no unnecessary civil work."
         variant="gradient"

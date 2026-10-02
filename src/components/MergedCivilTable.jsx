@@ -58,8 +58,15 @@ export default function MergedCivilTable({ headers = [], rows = [], className = 
   }
 
   return (
-    <div className={`overflow-x-auto rounded-xl border border-slate-200 shadow-sm bg-white ${className}`}>
-      <table className="w-full text-left text-xs border-collapse min-w-[700px]">
+    <div className="space-y-1.5">
+      {/* Mobile Swipe Hint Banner */}
+      <div className="sm:hidden flex items-center justify-between text-[11px] font-semibold text-brand-teal bg-teal-50/90 px-3 py-1.5 rounded-xl border border-teal-100">
+        <span>↔ Swipe horizontally to view all dimensions</span>
+        <span className="text-[10px] text-teal-700 font-mono font-bold">Scroll Table</span>
+      </div>
+
+      <div className={`overflow-x-auto rounded-xl border border-slate-200 shadow-sm bg-white touch-pan-x ${className}`}>
+        <table className="w-full text-left text-xs border-collapse min-w-[620px]">
         <thead>
           <tr className="bg-slate-100 text-slate-800 font-bold border-b border-slate-200 divide-x divide-slate-200/60">
             {headers.map((h, i) => (
@@ -110,6 +117,7 @@ export default function MergedCivilTable({ headers = [], rows = [], className = 
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

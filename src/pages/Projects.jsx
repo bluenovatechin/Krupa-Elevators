@@ -133,7 +133,7 @@ export default function Projects() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 space-y-12 sm:space-y-16 pb-20">
+    <div className="min-h-screen bg-slate-50 space-y-12 sm:space-y-16 pb-4">
       <Seo
         title="Projects & Clients"
         description={`Krupa Elevators installation record — ${installationStats.projects} projects across ${installationStats.locations} locations: residential towers, temples, hospitals, bungalows, showrooms and factories in Gujarat and beyond.`}
@@ -237,21 +237,21 @@ export default function Projects() {
               <span className="text-xs font-bold uppercase tracking-widest text-brand-teal">Project Directory</span>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">All Installations</h2>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <label className="relative">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full lg:w-auto">
+              <label className="relative flex-1 sm:w-72">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search client, area, city or district"
-                  className="w-full sm:w-72 pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/30 focus:border-brand-teal"
+                  className="w-full pl-10 pr-3 py-3 sm:py-2.5 rounded-xl border border-slate-200 bg-white text-base sm:text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-brand-teal/30 focus:border-brand-teal transition-all"
                 />
               </label>
               <select
                 value={activeDrive}
                 onChange={(e) => setActiveDrive(e.target.value)}
-                className="px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-teal/30 focus:border-brand-teal"
+                className="w-full sm:w-auto px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-200 bg-white text-base sm:text-sm text-slate-700 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-brand-teal/30 focus:border-brand-teal transition-all"
               >
                 <option value="all">All lift types</option>
                 {DRIVE_TYPES.map((d) => (
@@ -263,18 +263,19 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          {/* Horizontally scrollable filter pills on mobile */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 touch-pan-x -mx-4 px-4 sm:mx-0 sm:px-0">
             {[{ id: "all", short: "All", projects: installations }, ...installationStats.byType].map((t) => (
               <button
                 key={t.id}
                 type="button"
                 onClick={() => setActiveType(t.id)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-colors ${activeType === t.id
-                  ? "bg-slate-900 text-white border-slate-900"
+                className={`px-4 py-2 rounded-full text-xs font-bold border transition-all shrink-0 min-h-[38px] flex items-center justify-center active:scale-95 cursor-pointer ${activeType === t.id
+                  ? "bg-slate-900 text-white border-slate-900 shadow-xs"
                   : "bg-white text-slate-600 border-slate-200 hover:border-slate-300"
                   }`}
               >
-                {t.short} <span className="opacity-60">({t.projects.length})</span>
+                {t.short} <span className="opacity-60 ml-1">({t.projects.length})</span>
               </button>
             ))}
           </div>
@@ -309,7 +310,7 @@ export default function Projects() {
         </section>
       </div>
 
-      <CTASection
+      <CTASection contained
         title="Planning an Elevator for Your Building?"
         subtitle="Whether it is an apartment tower, a temple, a hospital or your own home, our team will survey the site and recommend the right lift for it."
         badge="Free Site Inspection"

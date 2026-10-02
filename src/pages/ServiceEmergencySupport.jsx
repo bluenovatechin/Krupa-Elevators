@@ -190,7 +190,7 @@ export default function ServiceEmergencySupport() {
         </div>
       </div>
 
-      <CTASection
+      <CTASection contained
         title="Facing an Elevator Breakdown Right Now?"
         subtitle="Report it on WhatsApp or call our helpline directly — our nearest mobile service van will be dispatched immediately."
         variant="gradient"

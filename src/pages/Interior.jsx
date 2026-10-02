@@ -88,10 +88,10 @@ function ModelSummaryCard({ model, accent = "teal" }) {
 
         <Link
           to={`/products/interiors/${model.id}`}
-          className={`w-full px-4 py-2.5 rounded-xl ${a.button} text-white text-xs font-bold flex items-center justify-center space-x-2 transition-all`}
+          className={`w-full px-4 py-3 min-h-[42px] rounded-xl ${a.button} text-white text-xs font-bold flex items-center justify-center space-x-2 transition-all`}
         >
           <span>View Full Details &amp; Specifications</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5 shrink-0" />
         </Link>
       </div>
     </div>
@@ -124,8 +124,9 @@ export default function Interior({ onOpenBrochure }) {
   return (
     <div className="min-h-screen bg-slate-50 pb-12">
       <Seo
-        title="Interior Cabin Finishes"
-        description="Explore Krupa Elevators' 11 cabin interior models across Basic, Standard, Semi Designer, and Premium series, plus PVD laser-etched AG Series surface patterns and COP/LOP operating panels."
+        title="Luxury Elevator Cabin Interiors in Ahmedabad | Krupa Elevators"
+        description="Explore Krupa Elevators' 11 luxury cabin interior series across Basic, Standard, Semi Designer, and Premium collections. Stainless steel, titanium gold, laser-etched AG patterns, and LED ceilings at affordable direct factory prices in Ahmedabad."
+        keywords="elevator cabin interior Ahmedabad, luxury elevator cabin, stainless steel lift interior, titanium gold elevator cabin, lift interior manufacturer Gujarat"
       />
 
       {/* ========================================================================= */}
@@ -579,38 +580,39 @@ export default function Interior({ onOpenBrochure }) {
       {lightboxImg && (
         <div
           onClick={() => setLightboxImg(null)}
-          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm p-4 sm:p-10 flex items-center justify-center animate-in fade-in duration-200"
+          className="fixed inset-0 z-[60] bg-slate-950/85 backdrop-blur-sm p-3 sm:p-10 flex items-center justify-center animate-in fade-in duration-200"
           role="dialog"
           aria-modal="true"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-white rounded-3xl p-4 sm:p-6 max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden"
+            className="relative bg-white rounded-3xl p-4 sm:p-6 max-w-4xl w-full max-h-[92vh] sm:max-h-[90vh] flex flex-col shadow-2xl overflow-hidden"
           >
-            <div className="flex justify-between items-center pb-3 border-b border-slate-200">
-              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+            <div className="flex justify-between items-center pb-3 border-b border-slate-200 gap-2">
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider truncate">
                 Full Resolution View
               </span>
               <button
                 onClick={() => setLightboxImg(null)}
-                className="p-1.5 rounded-xl hover:bg-slate-100 text-slate-600 transition-colors cursor-pointer"
+                className="w-10 h-10 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
+                aria-label="Close image preview"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-auto p-4 flex items-center justify-center">
+            <div className="flex-1 overflow-auto p-2 sm:p-4 flex items-center justify-center">
               <img
                 src={lightboxImg}
                 alt="Enlarged View"
-                className="max-h-[72vh] max-w-full object-contain"
+                className="max-h-[72vh] max-w-full object-contain rounded-lg"
               />
             </div>
 
             <div className="pt-3 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setLightboxImg(null)}
-                className="px-4 py-1.5 rounded-xl bg-slate-900 text-white font-bold text-xs cursor-pointer"
+                className="px-5 py-2.5 min-h-[40px] rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs cursor-pointer transition-colors"
               >
                 Close
               </button>

@@ -96,8 +96,13 @@ export default function MergedSpecTable({ tableData }) {
         </div>
       )}
 
+      {/* Mobile Swipe Hint Banner */}
+      <div className="sm:hidden flex items-center justify-between text-[11px] font-semibold text-brand-teal bg-teal-50/90 px-3 py-1.5 rounded-xl border border-teal-100">
+        <span>↔ Swipe horizontally to view full matrix</span>
+      </div>
+
       {/* Merged Table Container */}
-      <div className="overflow-x-auto bg-white rounded-2xl border border-slate-200 shadow-xs">
+      <div className="overflow-x-auto bg-white rounded-2xl border border-slate-200 shadow-xs touch-pan-x">
         <table className="min-w-full text-xs text-left border-collapse">
           <thead>
             <tr className="bg-slate-900 text-white font-bold border-b border-slate-800">

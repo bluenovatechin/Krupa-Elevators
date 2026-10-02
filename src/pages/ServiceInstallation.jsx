@@ -27,7 +27,7 @@ export default function ServiceInstallation() {
         </div>
       </div>
 
-      <CTASection
+      <CTASection contained
         title="Ready to Plan Your Installation?"
         subtitle="Our engineering team provides complimentary site surveys, custom CAD layouts, and verified civil shaft calculations across Gujarat and Western India."
         variant="gradient"

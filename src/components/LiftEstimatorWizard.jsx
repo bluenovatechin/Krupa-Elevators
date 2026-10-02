@@ -280,39 +280,39 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
   };
 
   return (
-    <div id="estimator" className="relative bg-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-800 overflow-hidden">
+    <div id="estimator" className="relative bg-slate-900 text-white rounded-3xl p-4 sm:p-6 lg:p-10 shadow-2xl border border-slate-800 overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-brand-teal/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header */}
-      <div className="relative z-10 max-w-3xl mb-8">
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-brand-orange text-xs font-semibold uppercase tracking-wider mb-3">
+      <div className="relative z-10 max-w-3xl mb-6 sm:mb-8">
+        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-brand-orange text-[11px] sm:text-xs font-semibold uppercase tracking-wider mb-2.5 sm:mb-3">
           <Zap className="w-3.5 h-3.5" />
           <span>Interactive Engineering Estimator</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
+        <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
           Configure Your Elevator &amp; Calculate Civil Specs in 60 Seconds
         </h2>
-        <p className="mt-2 text-sm sm:text-base text-slate-400">
+        <p className="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed">
           Tailored for architects, builders, and villa owners. Select your building specifications below to view estimated hoistway dimensions, power requirements, and receive an instant commercial quote.
         </p>
       </div>
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
         {/* Left Column: Interactive Configuration Steps (7 cols) */}
-        <div className="lg:col-span-7 space-y-7">
+        <div className="lg:col-span-7 space-y-6 sm:space-y-7">
 
           {/* Step 1: Select Application Type */}
           <div>
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-2.5 sm:mb-3">
               <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
                 <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-teal text-slate-950 text-xs font-black">1</span>
                 Select Building Category
               </label>
-              <span className="text-xs text-brand-teal font-medium">{currentBuilding.badge}</span>
+              <span className="text-[11px] sm:text-xs text-brand-teal font-medium">{currentBuilding.badge}</span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
               {BUILDING_TYPES.map((b) => {
                 const Icon = b.icon;
                 const isSelected = b.id === selectedBuildingId;
@@ -324,16 +324,16 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
                       setSelectedBuildingId(b.id);
                       setCapacityIndex(0);
                     }}
-                    className={`p-3 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between group ${isSelected
+                    className={`p-3 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between group min-h-[68px] active:scale-98 cursor-pointer ${isSelected
                       ? "bg-slate-800 border-brand-teal text-white shadow-lg shadow-brand-teal/10 ring-1 ring-brand-teal"
                       : "bg-slate-950/60 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200"
                       }`}
                   >
-                    <div className="flex items-center justify-between w-full mb-2">
+                    <div className="flex items-center justify-between w-full mb-1.5">
                       <Icon className={`w-5 h-5 ${isSelected ? "text-brand-teal" : "text-slate-500 group-hover:text-slate-400"}`} />
                       {isSelected && <CheckCircle2 className="w-4 h-4 text-brand-teal" />}
                     </div>
-                    <div className="text-xs font-semibold line-clamp-1">{b.name}</div>
+                    <div className="text-xs font-bold leading-snug">{b.name}</div>
                   </button>
                 );
               })}
@@ -344,17 +344,17 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {/* Number of Stops */}
             <div>
-              <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2 mb-3">
+              <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2 mb-2.5 sm:mb-3">
                 <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-teal text-slate-950 text-xs font-black">2</span>
                 Number of Stops / Floors
               </label>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2 sm:gap-1.5">
                 {FLOOR_OPTIONS.map((f) => (
                   <button
                     key={f}
                     type="button"
                     onClick={() => setSelectedFloors(f)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${selectedFloors === f
+                    className={`px-3.5 py-2.5 sm:py-1.5 rounded-xl text-xs font-bold transition-all min-h-[40px] flex items-center justify-center active:scale-95 cursor-pointer ${selectedFloors === f
                       ? "bg-brand-orange text-white shadow-md shadow-brand-orange/20"
                       : "bg-slate-950 border border-slate-800 text-slate-400 hover:border-slate-700 hover:text-white"
                       }`}
@@ -367,17 +367,17 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
 
             {/* Capacity Choice */}
             <div>
-              <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2 mb-3">
+              <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2 mb-2.5 sm:mb-3">
                 <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-teal text-slate-950 text-xs font-black">3</span>
                 Passenger / Load Capacity
               </label>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2 sm:gap-1.5">
                 {currentBuilding.capacities.map((cap, idx) => (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => setCapacityIndex(idx)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${capacityIndex === idx
+                    className={`px-3.5 py-2.5 sm:py-1.5 rounded-xl text-xs font-semibold transition-all min-h-[40px] flex items-center justify-center active:scale-95 cursor-pointer ${capacityIndex === idx
                       ? "bg-brand-teal text-slate-950 font-bold shadow-md shadow-brand-teal/20"
                       : "bg-slate-950 border border-slate-800 text-slate-400 hover:border-slate-700 hover:text-white"
                       }`}
@@ -391,23 +391,23 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
 
           {/* Step 3: Aesthetic Finish Tier */}
           <div>
-            <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2 mb-3">
+            <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2 mb-2.5 sm:mb-3">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-teal text-slate-950 text-xs font-black">4</span>
               Cabin Aesthetic Finish
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
               {AESTHETIC_FINISHES.map((a) => (
                 <button
                   key={a.id}
                   type="button"
                   onClick={() => setSelectedAesthetic(a.id)}
-                  className={`p-3 rounded-2xl border text-left transition-all ${selectedAesthetic === a.id
+                  className={`p-3 sm:p-3.5 rounded-2xl border text-left transition-all min-h-[58px] active:scale-98 cursor-pointer ${selectedAesthetic === a.id
                     ? "bg-slate-800 border-brand-orange text-white ring-1 ring-brand-orange shadow-md"
                     : "bg-slate-950/60 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-300"
                     }`}
                 >
                   <div className="text-xs font-bold text-slate-200">{a.name}</div>
-                  <div className="text-[11px] text-slate-500 mt-1 line-clamp-1">{a.desc}</div>
+                  <div className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">{a.desc}</div>
                 </button>
               ))}
             </div>
@@ -416,7 +416,7 @@ export default function LiftEstimatorWizard({ onOpenBrochure }) {
         </div>
 
         {/* Right Column: Live Computed Specification Card & Instant Actions (5 cols) */}
-        <div className="lg:col-span-5 bg-gradient-to-b from-slate-950 to-slate-900 rounded-2xl p-6 border border-slate-800/90 shadow-xl flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-gradient-to-b from-slate-950 to-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-800/90 shadow-xl flex flex-col justify-between">
           {submissionSuccess && submissionResult ? (
             <div className="space-y-4 py-2">
               <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mx-auto flex items-center justify-center">

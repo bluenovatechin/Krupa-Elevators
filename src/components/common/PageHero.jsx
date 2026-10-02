@@ -20,11 +20,11 @@ export default function PageHero({
   const phoneNumber = phone.replace(/\D/g, "");
 
   const defaultActions = (
-    <div className="flex flex-wrap items-center  gap-2.5 self-start md:self-auto">
+    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 self-start md:self-auto">
       {/* Call */}
       <a
         href={`tel:${phoneNumber}`}
-        className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-brand-teal text-white text-xs font-bold flex items-center space-x-2 transition-all shadow-xs cursor-pointer"
+        className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-brand-teal text-white text-xs font-bold flex items-center space-x-2 transition-all shadow-xs cursor-pointer min-h-[42px] active:scale-95"
       >
         <Phone className="w-3.5 h-3.5 text-brand-orange" />
         <span>Call: {phone}</span>
@@ -38,7 +38,7 @@ export default function PageHero({
         )}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold flex items-center space-x-2 shadow-xs transition-all cursor-pointer"
+        className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold flex items-center space-x-2 shadow-xs transition-all cursor-pointer min-h-[42px] active:scale-95"
       >
         <WhatsAppIcon className="w-4 h-4 text-white" />
         <span>WhatsApp Us</span>
@@ -50,7 +50,7 @@ export default function PageHero({
 
   return (
     <div className="border-b border-slate-200 bg-white/40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-6 sm:pt-6 sm:pb-8">
         {/* Breadcrumb Path */}
         {breadcrumbs && (
           <div className="mb-3 sm:mb-4">

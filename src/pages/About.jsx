@@ -27,8 +27,9 @@ export default function About({ onOpenBrochure }) {
   return (
     <div className="min-h-screen bg-slate-50 pb-12">
       <Seo
-        title="About Us"
-        description="KRUPA ELEVATORS — Ahmedabad-based elevator manufacturer with its own manufacturing works in Kathwada, Ahmedabad."
+        title="Best Elevator Manufacturing Plant in Ahmedabad | About Krupa Elevators"
+        description="Learn about KRUPA ELEVATORS — rated the #1 best elevator company and manufacturing plant in Kathwada GIDC, Ahmedabad. Direct factory manufacturing of affordable passenger, home, and commercial lifts with 100% monopoly-free AMC."
+        keywords="best manufacturing plant, best elevator company in Ahmedabad, elevator factory Kathwada GIDC, elevator manufacturer Gujarat, affordable elevator solutions, Krupa Elevators"
       />
 
       <PageHero

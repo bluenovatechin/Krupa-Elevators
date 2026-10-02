@@ -40,13 +40,13 @@ export default function StandardSpecTable({ specs, title = "Standard Technical S
         </div>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs sm:text-sm border-collapse">
+      <div className="overflow-x-auto touch-pan-x">
+        <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[340px]">
           <thead>
-            <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[11px]">
-              <th className="py-3 px-4 sm:px-6 w-1/3">Parameter</th>
-              <th className="py-3 px-4 sm:px-6 w-1/2">Official Specification</th>
-              <th className="py-3 px-4 sm:px-6 hidden md:table-cell text-right">System Domain</th>
+            <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[10.5px] sm:text-[11px]">
+              <th className="py-2.5 sm:py-3 px-3.5 sm:px-6 w-2/5 sm:w-1/3">Parameter</th>
+              <th className="py-2.5 sm:py-3 px-3.5 sm:px-6 w-3/5 sm:w-1/2">Official Specification</th>
+              <th className="py-2.5 sm:py-3 px-3.5 sm:px-6 hidden md:table-cell text-right">System Domain</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -55,7 +55,7 @@ export default function StandardSpecTable({ specs, title = "Standard Technical S
                 key={idx} 
                 className={`hover:bg-teal-50/30 transition-colors ${idx % 2 === 0 ? "bg-white" : "bg-slate-50/40"}`}
               >
-                <td className="py-3 px-4 sm:px-6 font-semibold text-slate-900 whitespace-nowrap">
+                <td className="py-2.5 sm:py-3 px-3.5 sm:px-6 font-semibold text-slate-900 text-xs sm:text-sm">
                   {row.label}
                 </td>
                 <td className="py-3 px-4 sm:px-6 font-bold text-slate-800">

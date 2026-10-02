@@ -1,4 +1,5 @@
 import { assetUrl } from "../utils/assetPath";
+import { elevatorSeoData } from "./elevatorSeoData";
 
 // ---------------------------------------------------------------------------
 // Technical drawing dimension tables (from the Krupa Elevators brochure,
@@ -419,7 +420,7 @@ const hydraulicElevatorTechnical = {
 // ---------------------------------------------------------------------------
 // Elevator model catalog
 // ---------------------------------------------------------------------------
-export const elevatorMaster = [
+const rawElevatorCatalog = [
   {
     id: "passenger",
     name: "Passenger Elevator",
@@ -1067,6 +1068,11 @@ export const elevatorMaster = [
     ]
   }
 ];
+
+export const elevatorMaster = rawElevatorCatalog.map((elev) => ({
+  ...elev,
+  ...(elevatorSeoData[elev.id] || {})
+}));
 
 // ---------------------------------------------------------------------------
 // getElevatorSingleTable(elevatorId)

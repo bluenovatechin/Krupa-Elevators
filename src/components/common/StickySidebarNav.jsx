@@ -108,10 +108,10 @@ export default function StickySidebarNav({
       {/* ------------------------------------------------------------------- */}
       {/* 1. MOBILE FIRST: HORIZONTAL STICKY BAR (Below top navbar, < lg)     */}
       {/* ------------------------------------------------------------------- */}
-      <div className=" w-full block lg:hidden sticky top-20 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs  px-3  py-2 ">
+      <div className="w-full block lg:hidden sticky top-14 sm:top-15 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs px-3 py-2">
         <div
           ref={mobileContainerRef}
-          className="flex items-center space-x-2 overflow-x-auto no-scrollbar scroll-smooth"
+          className="flex items-center space-x-2 overflow-x-auto no-scrollbar scroll-smooth touch-pan-x"
         >
           {flatMobileItems.map((item) => {
             const isActive =
@@ -123,7 +123,7 @@ export default function StickySidebarNav({
                 key={item.id}
                 ref={isActive ? activePillRef : null}
                 onClick={() => scrollToSection(item.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold shrink-0 transition-all cursor-pointer flex items-center space-x-1.5 ${isActive
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold shrink-0 transition-all cursor-pointer min-h-[38px] flex items-center space-x-1.5 active:scale-95 ${isActive
                   ? "bg-slate-900 text-white shadow-xs"
                   : "bg-slate-100 hover:bg-slate-200 text-slate-700"
                   } ${item.isSub ? "text-[11px] font-medium" : ""}`}
